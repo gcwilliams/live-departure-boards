@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="uk.co.gcwilliams.ldb.app"
+          android:versionCode="1"
+          android:versionName="1.0">
+
+    <uses-sdk android:minSdkVersion="14" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+            android:label="@string/app_name"
+            android:description="@string/app_description"
+            android:icon="@drawable/icon"
+            android:name=".LdbApp"
+            android:debuggable="true"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
+
+        <activity android:name=".activities.SearchActivity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.DepartureBoardActivity" android:label="@string/app_name"/>
+        <activity android:name=".activities.ArrivalBoardActivity" android:label="@string/app_name"/>
+        <activity android:name=".activities.ServiceDetailsActivity" android:label="@string/app_name"/>
+
+    </application>
+</manifest>

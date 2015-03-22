@@ -1,0 +1,46 @@
+{
+    "generatedAt": "2014-11-26T14:24:07.112Z",
+    "currentStation": {
+        "name": "Three Bridges",
+        "stationId": "TBD"
+    },
+    "previousCallingPoints": [
+        [
+            {
+                "station": {
+                    "name": "Bedford",
+                    "stationId": "BDM"
+                },
+                "standardDepartureTime": "2014-11-26T12:10:00.000Z",
+                "actualDepartureTime": null
+            },
+            {
+                "station": {
+                    "name": "Gatwick Airport",
+                    "stationId": "GTW"
+                },
+                "standardDepartureTime": "2014-11-26T13:57:00.000Z",
+                "actualDepartureTime": null
+            }
+        ]
+    ],
+    "subsequentCallingPoints": [
+        [
+            {
+                "station": {
+                    "name": "Haywards Heath",
+                    "stationId": "HHE"
+                },
+                "standardDepartureTime": "2014-11-26T14:11:00.000Z",
+                "estimatedDepartureTime": null
+            }
+        ]
+    ],
+    "standardTimeOfArrival": "2014-11-26T14:01:00.000Z",
+    "estimatedTimeOfArrival": "2014-11-26T14:51:00.000Z",
+    "standardTimeOfDeparture": "2014-11-26T14:01:00.000Z",
+    "estimatedTimeOfDeparture": null,
+    "platform": 5,
+    "operator": "Thameslink",
+    "operatorCode": "TL"
+}

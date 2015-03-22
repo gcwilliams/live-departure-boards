@@ -1,0 +1,30 @@
+{
+    "generatedAt": "2014-11-26T15:04:05.253Z",
+    "station": {
+        "name": "Three Bridges",
+        "stationId": "TBD"
+    },
+    "services": [
+        {
+            "origin": {
+                "name": "Brighton",
+                "stationId": "BTN"
+            },
+            "destination": {
+                "station": {
+                    "name": "Bedford",
+                    "stationId": "BDM"
+                },
+                "via": "via London Bridge"
+            },
+            "standardTimeOfArrival": "2014-11-26T15:42:00.000Z",
+            "estimatedTimeOfArrival": null,
+            "standardTimeOfDeparture": null,
+            "estimatedTimeOfDeparture": null,
+            "platform": 4,
+            "operator": "Thameslink",
+            "operatorCode": "TL",
+            "serviceId": "zVVrRiIpwWp1UPT3+F2eRw=="
+        }
+    ]
+}

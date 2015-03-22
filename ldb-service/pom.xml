@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>ldb</artifactId>
+        <groupId>uk.co.gcwilliams</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ldb-service</artifactId>
+    <packaging>jar</packaging>
+
+    <name>ldb-service</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.gcwilliams</groupId>
+            <artifactId>ldb-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <args>
+                                <arg>-B-XautoNameResolution</arg>
+                            </args>
+                            <xjcArgs>
+                                <xjcArg>-extension</xjcArg>
+                            </xjcArgs>
+                            <extension>true</extension>
+                            <xdisableSSLHostnameVerification>true</xdisableSSLHostnameVerification>
+                            <wsdlUrls>
+                                <wsdlUrl>https://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>uk.co.gcwilliams.ldb.stubs</packageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

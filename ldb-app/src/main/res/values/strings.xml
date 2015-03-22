@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LDB</string>
+    <string name="app_description">Live Train Departure Boards</string>
+    <string name="from">From...</string>
+    <string name="to">To... (optional)</string>
+    <string name="view_board">Show Me</string>
+    <string name="on_time">On Time</string>
+</resources>
