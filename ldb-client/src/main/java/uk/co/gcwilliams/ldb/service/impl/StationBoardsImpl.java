@@ -95,7 +95,7 @@ public class StationBoardsImpl extends AbstractService implements StationBoards 
     @Override
     public ServiceDetail getServiceDetail(Id<Service> serviceId) {
         String path = String.format(SERVICE_DETAIL_PATH, serviceId);
-        String content = executeRequest(createGetRequest(createURI(path)));
+        String content = executeRequest(createGetRequest(createURI(path, Param.create(SERVICE_ID, serviceId.get()))));
         return GSON.fromJson(content, ServiceDetailBuilder.class).build();
     }
 }

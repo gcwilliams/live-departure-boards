@@ -133,6 +133,10 @@ public class AbstractService {
         }
     }
 
+    /**
+     * Determines if the parameter is valid
+     *
+     */
     private static final Predicate<Param> IS_VALID_PARAM_PREDICATE = new Predicate<Param>() {
         @Override
         public boolean apply(Param input) {
@@ -140,6 +144,10 @@ public class AbstractService {
         }
     };
 
+    /**
+     * Converts a param into a query string
+     *
+     */
     private static final Function<Param, String> TO_QUERY_PARAM_FUNCTION = new Function<Param, String>() {
         @Override
         public String apply(Param input) {
@@ -147,17 +155,34 @@ public class AbstractService {
         }
     };
 
+    /**
+     * A query parameter
+     *
+     */
     protected static class Param {
 
         private final String name;
 
         private final String value;
 
+        /**
+         * Default constructor
+         *
+         * @param name the name
+         * @param value the value
+         */
         private Param(String name, String value) {
             this.name = name;
             this.value = value;
         }
 
+        /**
+         * Creates a parameter with the specified name and value
+         *
+         * @param name the name
+         * @param value the value
+         * @return the parameter
+         */
         protected static Param create(String name, String value) {
             return new Param(name, value);
         }

@@ -6,11 +6,15 @@ import com.google.common.collect.Lists;
 import com.google.common.reflect.TypeToken;
 import org.apache.http.client.HttpClient;
 import uk.co.gcwilliams.ldb.model.StationCode;
+import uk.co.gcwilliams.ldb.model.builder.BuilderTransformation;
 import uk.co.gcwilliams.ldb.model.builder.StationCodeBuilder;
 import uk.co.gcwilliams.ldb.service.StationCodes;
 
 import java.lang.reflect.Type;
 import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Lists.transform;
 
 /**
  * The station codes implementation
@@ -52,11 +56,6 @@ public class StationCodesImpl extends AbstractService implements StationCodes {
     public List<StationCode> suggestStationCodes(String term) {
         String content = executeRequest(createGetRequest(createURI(SUGGEST_PATH, Param.create(NAME, term))));
         List<StationCodeBuilder> codes = GSON.fromJson(content, STATION_CODE_LIST_TYPE);
-        return Lists.newArrayList(Iterables.transform(codes, new Function<StationCodeBuilder, StationCode>() {
-            @Override
-            public StationCode apply(StationCodeBuilder input) {
-                return input.build();
-            }
-        }));
+        return transform(codes, new BuilderTransformation<StationCode>());
     }
 }

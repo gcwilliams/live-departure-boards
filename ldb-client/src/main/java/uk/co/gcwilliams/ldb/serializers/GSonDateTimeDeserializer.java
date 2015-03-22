@@ -11,6 +11,8 @@ import org.joda.time.format.ISODateTimeFormat;
 import java.lang.reflect.Type;
 
 /**
+ * A date time deserializer
+ *
  * @author Gareth Williams (466567)
  */
 public class GSonDateTimeDeserializer implements JsonDeserializer<DateTime> {
