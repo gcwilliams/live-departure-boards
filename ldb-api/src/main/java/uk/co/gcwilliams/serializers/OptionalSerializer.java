@@ -10,7 +10,7 @@ import org.codehaus.jackson.type.JavaType;
 import java.io.IOException;
 
 /**
- * The optional getSerializer
+ * The optional serializer
  *
  * @author Gareth Williams (466567)
  */

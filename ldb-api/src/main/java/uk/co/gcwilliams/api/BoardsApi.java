@@ -19,6 +19,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 /**
+ * The boards API
+ *
  * @author Gareth Williams (466567)
  */
 @RolesAllowed("ldb-api")
@@ -41,11 +43,18 @@ public class BoardsApi {
         this.boards = boards;
     }
 
+    /**
+     * Gets the departures board
+     *
+     * @param from the from station code
+     * @param to the to station code
+     * @return the station board
+     */
     @GET
-    @Path("/departures/{stationCode}")
-    public StationBoard getDeparturesBoard(@PathParam("stationCode") String stationCode, @QueryParam("to") String to) {
+    @Path("/departures/{from}")
+    public StationBoard getDeparturesBoard(@PathParam("from") String from, @QueryParam("to") String to) {
 
-        Optional<StationCode> code = codes.getCode(stationCode);
+        Optional<StationCode> code = codes.getCode(from);
 
         if (!code.isPresent()) {
             throw new WebApplicationException(400);
@@ -63,11 +72,18 @@ public class BoardsApi {
         return boards.getDepartureBoard(code.get(), toCode.get());
     }
 
+    /**
+     * Gets the arrivals board
+     *
+     * @param to the to station code
+     * @param from the from station code
+     * @return the station board
+     */
     @GET
-    @Path("/arrivals/{stationCode}")
-    public StationBoard getArrivalsBoard(@PathParam("stationCode") String stationCode, @QueryParam("from") String from) {
+    @Path("/arrivals/{to}")
+    public StationBoard getArrivalsBoard(@PathParam("to") String to, @QueryParam("from") String from) {
 
-        Optional<StationCode> code = codes.getCode(stationCode);
+        Optional<StationCode> code = codes.getCode(to);
 
         if (!code.isPresent()) {
             throw new WebApplicationException(400);
@@ -85,9 +101,15 @@ public class BoardsApi {
         return boards.getArrivalBoard(code.get(), fromCode.get());
     }
 
+    /**
+     * Gets the service detail
+     *
+     * @param serviceId the service ID
+     * @return the service detail
+     */
     @GET
     @Path("/detail/{serviceId:.+}")
     public ServiceDetail getServiceDetail(@PathParam("serviceId") String serviceId) {
-        return boards.getServiceDetail(new Id<Service>(serviceId));
+        return boards.getServiceDetail(new Id<>(serviceId));
     }
 }

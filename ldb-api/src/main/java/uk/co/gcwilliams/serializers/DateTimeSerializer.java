@@ -12,6 +12,8 @@ import org.joda.time.format.ISODateTimeFormat;
 import java.io.IOException;
 
 /**
+ * The date time serializer
+ *
  * @author Gareth Williams (466567)
  */
 public class DateTimeSerializer extends JsonSerializer<DateTime> implements CanSerialize<DateTime> {

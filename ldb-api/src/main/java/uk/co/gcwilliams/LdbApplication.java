@@ -20,6 +20,10 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("api")
 public class LdbApplication extends ResourceConfig {
 
+    /**
+     * Default constructor
+     *
+     */
     public LdbApplication() {
         packages("uk.co.gcwilliams.api");
         register(JacksonFeature.class);

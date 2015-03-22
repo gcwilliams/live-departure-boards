@@ -4,7 +4,7 @@ import org.glassfish.hk2.api.Factory;
 import uk.co.gcwilliams.codes.StationCodes;
 
 /**
- * The station codes
+ * The station codes factory
  *
  * @author Gareth Williams (466567)
  */

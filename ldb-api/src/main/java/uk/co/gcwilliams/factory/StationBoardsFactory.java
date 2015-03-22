@@ -6,6 +6,8 @@ import uk.co.gcwilliams.ldb.service.StationBoardsImpl;
 import uk.co.gcwilliams.ldb.stubs.Ldb;
 
 /**
+ * The station boards factory
+ *
  * @author Gareth Williams (466567)
  */
 public class StationBoardsFactory implements Factory<StationBoards> {

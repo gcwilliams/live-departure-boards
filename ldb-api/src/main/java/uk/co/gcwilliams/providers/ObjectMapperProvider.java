@@ -9,6 +9,8 @@ import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
 
 /**
+ * The object mapper provider
+ *
  * @author Gareth Williams (466567)
  */
 @Provider

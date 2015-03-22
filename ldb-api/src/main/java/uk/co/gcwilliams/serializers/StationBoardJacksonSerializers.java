@@ -11,12 +11,19 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * The station board serializers
+ *
  * @author Gareth Williams (466567)
  */
 public class StationBoardJacksonSerializers extends Serializers.Base {
 
     private final List<CanSerialize<?>> serializers;
 
+    /**
+     * Default constructor
+     *
+     * @param serializers the serializers
+     */
     public StationBoardJacksonSerializers(CanSerialize<?>... serializers) {
         this.serializers = Arrays.asList(serializers);
     }

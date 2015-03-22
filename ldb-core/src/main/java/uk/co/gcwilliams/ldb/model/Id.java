@@ -28,4 +28,14 @@ public class Id<T> implements Serializable {
     public String get() {
         return id;
     }
+
+    @Override
+    public int hashCode() {
+        return id == null ? 0 : id.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this || !(obj == null || (!(obj instanceof Id))) && id.equals(((Id<?>) obj).id);
+    }
 }

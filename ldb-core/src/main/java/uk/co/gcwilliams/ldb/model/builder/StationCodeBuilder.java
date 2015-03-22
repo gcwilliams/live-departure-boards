@@ -58,5 +58,25 @@ public class StationCodeBuilder implements Builder<StationCode> {
         public Id<Station> getStationId() {
             return stationId;
         }
+
+        @Override
+        public int hashCode() {
+            int hash = 1;
+            hash = 31 * hash + (name == null ? 0 : name.hashCode());
+            hash = 31 * hash + (stationId == null ? 0 : stationId.get().hashCode());
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj == null || (!(obj instanceof StationCodeImpl))) {
+                return false;
+            }
+            StationCodeImpl stationCodeImpl = (StationCodeImpl)obj;
+            return name.equals(stationCodeImpl.name) && stationId.equals(stationCodeImpl.stationId);
+        }
     }
 }

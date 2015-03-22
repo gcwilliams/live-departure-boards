@@ -32,7 +32,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The station
+ * The station API
  *
  * @author Gareth Williams (466567)
  */
@@ -48,12 +48,23 @@ public class StationApi {
 
     private IndexReader reader;
 
+    /**
+     * Default constructor
+     *
+     * @param stationCodes the station codes
+     */
     @Inject
     public StationApi(StationCodes stationCodes) {
         this.stationCodes = stationCodes;
         init();
     }
 
+    /**
+     * Finds the station codes that match the specified name
+     *
+     * @param name the name
+     * @return the matching station codes
+     */
     @GET
     public List<StationCode> find(@QueryParam("name") String name) {
 
@@ -78,6 +89,10 @@ public class StationApi {
         return stationCodes;
     }
 
+    /**
+     * Creates the lucene index
+     *
+     */
     private void init() {
 
         IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_4_10_2, analyzer);

@@ -10,7 +10,7 @@ import uk.co.gcwilliams.ldb.model.Id;
 import java.io.IOException;
 
 /**
- * The ID getSerializer
+ * The ID serializer
  *
  * @author Gareth Williams (466567)
  */
