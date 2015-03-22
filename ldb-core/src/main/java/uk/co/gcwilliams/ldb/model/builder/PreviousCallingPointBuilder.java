@@ -50,9 +50,6 @@ public class PreviousCallingPointBuilder extends AbstractCallingPointBuilder imp
         if (station == null) {
             throw new IllegalStateException("A station must be provided");
         }
-        if (standardDepartureTime == null) {
-            throw new IllegalStateException("A standard departure time must be provided");
-        }
         return new PreviousCallingPointImpl(
             station.build(),
             Optional.fromNullable(standardDepartureTime),

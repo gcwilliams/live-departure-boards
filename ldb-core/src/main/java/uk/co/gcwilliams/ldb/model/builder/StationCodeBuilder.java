@@ -14,7 +14,7 @@ public class StationCodeBuilder implements Builder<StationCode> {
 
     private String name;
 
-    private Id<Station> stationId;
+    private String stationId;
 
     public StationCodeBuilder setName(String name) {
         this.name = name;
@@ -22,7 +22,7 @@ public class StationCodeBuilder implements Builder<StationCode> {
     }
 
     public StationCodeBuilder setStationId(String stationId) {
-        this.stationId = new Id<Station>(stationId);
+        this.stationId = stationId;
         return this;
     }
 
@@ -31,11 +31,11 @@ public class StationCodeBuilder implements Builder<StationCode> {
         if (Strings.isNullOrEmpty(name)) {
             throw new IllegalStateException("A name must be provided");
         }
-        if (stationId == null) {
+        if (Strings.isNullOrEmpty(stationId)) {
             throw new IllegalStateException("A station ID must be provided");
         }
 
-        return new StationCodeImpl(name, stationId);
+        return new StationCodeImpl(name, new Id<Station>(stationId));
     }
 
     private static class StationCodeImpl implements StationCode {

@@ -181,7 +181,7 @@ public class StationBoardsImpl implements StationBoards {
     }
 
     private static DestinationBuilder mapLocation(ServiceLocation2 serviceLocation) {
-        return new DestinationBuilder().setStation(mapStation(serviceLocation)).setStation(serviceLocation.getVia());
+        return new DestinationBuilder().setStation(mapStation(serviceLocation)).setVia(serviceLocation.getVia());
     }
 
     private static StationBuilder mapStation(ServiceLocation2 serviceLocation) {

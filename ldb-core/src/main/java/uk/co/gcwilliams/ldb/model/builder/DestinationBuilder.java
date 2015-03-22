@@ -32,7 +32,7 @@ public class DestinationBuilder implements Builder<Destination> {
      * @param via The via
      * @return The station builder
      */
-    public DestinationBuilder setStation(String via) {
+    public DestinationBuilder setVia(String via) {
         this.via = via;
         return this;
     }

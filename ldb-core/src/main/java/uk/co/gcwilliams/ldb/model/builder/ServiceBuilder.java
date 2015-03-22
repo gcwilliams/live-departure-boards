@@ -139,7 +139,7 @@ public class ServiceBuilder extends AbstractServiceBuilder implements Builder<Se
         if (Strings.isNullOrEmpty(operatorCode)) {
             throw new IllegalStateException("An operator code must be provided");
         }
-        if (serviceId == null) {
+        if (Strings.isNullOrEmpty(serviceId)) {
             throw new IllegalStateException("An service ID must be provided");
         }
 

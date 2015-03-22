@@ -180,10 +180,10 @@ public class ServiceDetailBuilder extends AbstractServiceBuilder implements Buil
         if (Strings.isNullOrEmpty(operatorCode)) {
             throw new IllegalStateException("An operator code must be provided");
         }
-        if (Iterables.size(Iterables.concat(previousCallingPoints)) == 0) {
+        if (previousCallingPoints == null) {
             throw new IllegalStateException("An previous calling points must be provided");
         }
-        if (Iterables.size(Iterables.concat(subsequentCallingPoints)) == 0) {
+        if (subsequentCallingPoints == null) {
             throw new IllegalStateException("An subsequent calling points must be provided");
         }
         return new ServiceDetailImpl(

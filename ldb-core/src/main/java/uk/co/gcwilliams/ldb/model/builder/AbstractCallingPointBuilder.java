@@ -9,7 +9,7 @@ import uk.co.gcwilliams.ldb.model.Station;
  *
  * @author Gareth Williams (466567)
  */
-public class AbstractCallingPointBuilder {
+public abstract class AbstractCallingPointBuilder {
 
     protected StationBuilder station;
 
