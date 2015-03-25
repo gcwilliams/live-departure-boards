@@ -18,6 +18,10 @@ public class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
+    /**
+     * Default constructor
+     *
+     */
     public ObjectMapperProvider() {
         mapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
         mapper.configure(SerializationConfig.Feature.REQUIRE_SETTERS_FOR_GETTERS, false);

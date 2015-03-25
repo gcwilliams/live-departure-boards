@@ -65,37 +65,37 @@ public class StationBoardsImpl extends AbstractService implements StationBoards 
     }
 
     @Override
-    public StationBoard getArrivalBoard(StationCode stationCode) {
-        String path = String.format(ARRIVALS_BOARD_PATH, stationCode.getStationId().get());
+    public StationBoard getArrivalBoard(StationCode to) {
+        String path = String.format(ARRIVALS_BOARD_PATH, to.getStationId().get());
         String content = executeRequest(createGetRequest(createURI(path)));
         return GSON.fromJson(content, StationBoardBuilder.class).build();
     }
 
     @Override
-    public StationBoard getArrivalBoard(StationCode stationCode, StationCode from) {
-        String path = String.format(ARRIVALS_BOARD_PATH, stationCode.getStationId().get());
+    public StationBoard getArrivalBoard(StationCode to, StationCode from) {
+        String path = String.format(ARRIVALS_BOARD_PATH, to.getStationId().get());
         String content = executeRequest(createGetRequest(createURI(path, Param.create(FROM, from.getStationId().get()))));
         return GSON.fromJson(content, StationBoardBuilder.class).build();
     }
 
     @Override
-    public StationBoard getDepartureBoard(StationCode stationCode) {
-        String path = String.format(DEPARTURES_BOARD_PATH, stationCode.getStationId().get());
+    public StationBoard getDepartureBoard(StationCode from) {
+        String path = String.format(DEPARTURES_BOARD_PATH, from.getStationId().get());
         String content = executeRequest(createGetRequest(createURI(path)));
         return GSON.fromJson(content, StationBoardBuilder.class).build();
     }
 
     @Override
-    public StationBoard getDepartureBoard(StationCode stationCode, StationCode to) {
-        String path = String.format(DEPARTURES_BOARD_PATH, stationCode.getStationId().get());
+    public StationBoard getDepartureBoard(StationCode from, StationCode to) {
+        String path = String.format(DEPARTURES_BOARD_PATH, from.getStationId().get());
         String content = executeRequest(createGetRequest(createURI(path, Param.create(TO, to.getStationId().get()))));
         return GSON.fromJson(content, StationBoardBuilder.class).build();
     }
 
     @Override
-    public ServiceDetail getServiceDetail(Id<Service> serviceId) {
-        String path = String.format(SERVICE_DETAIL_PATH, serviceId);
-        String content = executeRequest(createGetRequest(createURI(path, Param.create(SERVICE_ID, serviceId.get()))));
+    public ServiceDetail getServiceDetail(Id<Service> id) {
+        String path = String.format(SERVICE_DETAIL_PATH, id);
+        String content = executeRequest(createGetRequest(createURI(path, Param.create(SERVICE_ID, id.get()))));
         return GSON.fromJson(content, ServiceDetailBuilder.class).build();
     }
 }

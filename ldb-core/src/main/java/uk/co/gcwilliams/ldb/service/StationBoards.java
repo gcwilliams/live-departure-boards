@@ -16,43 +16,43 @@ public interface StationBoards {
     /**
      * Gets the arrival board for the specified station
      *
-     * @param stationCode The station code
+     * @param to The station code
      * @return The arrival board
      */
-    StationBoard getArrivalBoard(StationCode stationCode);
+    StationBoard getArrivalBoard(StationCode to);
 
     /**
      * Gets the arrival board for the specified station from the specified station
      *
-     * @param stationCode The station code
+     * @param to The station code
      * @param from The departure station code
      * @return The arrival board
      */
-    StationBoard getArrivalBoard(StationCode stationCode, StationCode from);
+    StationBoard getArrivalBoard(StationCode to, StationCode from);
 
     /**
      * Gets the departure board for the specified station
      *
-     * @param stationCode The station code
+     * @param from The station code
      * @return The departure board
      */
-    StationBoard getDepartureBoard(StationCode stationCode);
+    StationBoard getDepartureBoard(StationCode from);
 
     /**
      * Gets the departure board for the specified station to the specified station
      *
-     * @param stationCode The station code
+     * @param from The station code
      * @param to The destination station code
      * @return The departure board
      */
-    StationBoard getDepartureBoard(StationCode stationCode, StationCode to);
+    StationBoard getDepartureBoard(StationCode from, StationCode to);
 
     /**
      * Gets the service details
      *
-     * @param serviceId The service ID
+     * @param id The service ID
      * @return The service details
      */
-    ServiceDetail getServiceDetail(Id<Service> serviceId);
+    ServiceDetail getServiceDetail(Id<Service> id);
 
 }

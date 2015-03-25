@@ -1,14 +1,12 @@
 package uk.co.gcwilliams.api;
 
-import com.google.common.base.Optional;
 import com.google.common.base.Strings;
-import uk.co.gcwilliams.codes.StationCodes;
 import uk.co.gcwilliams.ldb.model.Id;
-import uk.co.gcwilliams.ldb.model.Service;
 import uk.co.gcwilliams.ldb.model.ServiceDetail;
 import uk.co.gcwilliams.ldb.model.StationBoard;
 import uk.co.gcwilliams.ldb.model.StationCode;
 import uk.co.gcwilliams.ldb.service.StationBoards;
+import uk.co.gcwilliams.service.StationCodesService;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -17,6 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import java.util.Optional;
 
 /**
  * The boards API
@@ -27,19 +27,19 @@ import javax.ws.rs.WebApplicationException;
 @Path("/boards")
 public class BoardsApi {
 
-    private final StationCodes codes;
+    private final StationCodesService stationCodesService;
 
     private final StationBoards boards;
 
     /**
      * Default constructor
      *
-     * @param codes The station codes
+     * @param stationCodesService The station codes service
      * @param boards The station boards
      */
     @Inject
-    public BoardsApi(StationCodes codes, StationBoards boards) {
-        this.codes = codes;
+    public BoardsApi(StationCodesService stationCodesService, StationBoards boards) {
+        this.stationCodesService = stationCodesService;
         this.boards = boards;
     }
 
@@ -54,19 +54,19 @@ public class BoardsApi {
     @Path("/departures/{from}")
     public StationBoard getDeparturesBoard(@PathParam("from") String from, @QueryParam("to") String to) {
 
-        Optional<StationCode> code = codes.getCode(from);
+        Optional<StationCode> code = stationCodesService.getCode(from);
 
         if (!code.isPresent()) {
-            throw new WebApplicationException(400);
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
 
         if (Strings.isNullOrEmpty(to)) {
             return boards.getDepartureBoard(code.get());
         }
 
-        Optional<StationCode> toCode = codes.getCode(to);
+        Optional<StationCode> toCode = stationCodesService.getCode(to);
         if (!toCode.isPresent()) {
-            throw new WebApplicationException(400);
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
 
         return boards.getDepartureBoard(code.get(), toCode.get());
@@ -83,19 +83,19 @@ public class BoardsApi {
     @Path("/arrivals/{to}")
     public StationBoard getArrivalsBoard(@PathParam("to") String to, @QueryParam("from") String from) {
 
-        Optional<StationCode> code = codes.getCode(to);
+        Optional<StationCode> code = stationCodesService.getCode(to);
 
         if (!code.isPresent()) {
-            throw new WebApplicationException(400);
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
 
         if (Strings.isNullOrEmpty(from)) {
             return boards.getArrivalBoard(code.get());
         }
 
-        Optional<StationCode> fromCode = codes.getCode(from);
+        Optional<StationCode> fromCode = stationCodesService.getCode(from);
         if (!fromCode.isPresent()) {
-            throw new WebApplicationException(400);
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
 
         return boards.getArrivalBoard(code.get(), fromCode.get());

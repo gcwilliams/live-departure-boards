@@ -1,6 +1,5 @@
 package uk.co.gcwilliams.api;
 
-import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,7 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import uk.co.gcwilliams.codes.StationCodes;
+import uk.co.gcwilliams.service.StationCodesService;
+import uk.co.gcwilliams.service.StationCodesServiceImpl;
 import uk.co.gcwilliams.ldb.model.Id;
 import uk.co.gcwilliams.ldb.model.Service;
 import uk.co.gcwilliams.ldb.model.ServiceDetail;
@@ -19,9 +19,8 @@ import uk.co.gcwilliams.ldb.model.builder.StationCodeBuilder;
 import uk.co.gcwilliams.ldb.service.StationBoards;
 
 import javax.ws.rs.WebApplicationException;
-import java.util.concurrent.ExecutionException;
+import java.util.Optional;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -41,7 +40,7 @@ public class BoardsApiTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Mock
-    private StationCodes stationCodes;
+    private StationCodesService stationCodes;
 
     @Mock
     private StationBoards stationBoards;
@@ -63,7 +62,7 @@ public class BoardsApiTest {
     public void testAllArrivalsStationCodeNotFound() {
 
         // arrange
-        when(stationCodes.getCode(eq("BTN"))).thenReturn(Optional.absent());
+        when(stationCodes.getCode(eq("BTN"))).thenReturn(Optional.empty());
 
         // act
         exception.expect(WebApplicationException.class);
@@ -95,7 +94,7 @@ public class BoardsApiTest {
         // arrange
         StationCode btn = new StationCodeBuilder().setName("Brighton").setStationId("BTN").build();
         when(stationCodes.getCode(eq("BTN"))).thenReturn(Optional.of(btn));
-        when(stationCodes.getCode(eq("TBD"))).thenReturn(Optional.absent());
+        when(stationCodes.getCode(eq("TBD"))).thenReturn(Optional.empty());
 
         // act
         exception.expect(WebApplicationException.class);

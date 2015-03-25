@@ -16,22 +16,12 @@ import java.io.IOException;
  *
  * @author Gareth Williams (466567)
  */
-public class DateTimeSerializer extends JsonSerializer<DateTime> implements CanSerialize<DateTime> {
+public class DateTimeSerializer extends JsonSerializer<DateTime> {
 
     private final DateTimeFormatter ISO_FORMATTER = ISODateTimeFormat.dateTime().withZoneUTC();
 
     @Override
     public void serialize(DateTime value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
         provider.defaultSerializeValue(ISO_FORMATTER.print(value), jgen);
-    }
-
-    @Override
-    public boolean canSerialize(JavaType type) {
-        return DateTime.class.isAssignableFrom(type.getRawClass());
-    }
-
-    @Override
-    public JsonSerializer<DateTime> getSerializer() {
-        return this;
     }
 }

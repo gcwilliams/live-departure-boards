@@ -4,11 +4,11 @@ import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
-import uk.co.gcwilliams.codes.StationCodes;
 import uk.co.gcwilliams.factory.StationBoardsFactory;
 import uk.co.gcwilliams.factory.StationCodesFactory;
 import uk.co.gcwilliams.ldb.service.StationBoards;
 import uk.co.gcwilliams.providers.ObjectMapperProvider;
+import uk.co.gcwilliams.service.StationCodesService;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -33,7 +33,7 @@ public class LdbApplication extends ResourceConfig {
         registerInstances(new AbstractBinder() {
             @Override
             protected void configure() {
-                bindFactory(StationCodesFactory.class).to(StationCodes.class);
+                bindFactory(StationCodesFactory.class).to(StationCodesService.class);
                 bindFactory(StationBoardsFactory.class).to(StationBoards.class);
             }
         });

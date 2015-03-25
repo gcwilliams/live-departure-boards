@@ -5,7 +5,6 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
-import org.codehaus.jackson.type.JavaType;
 
 import java.io.IOException;
 
@@ -14,7 +13,7 @@ import java.io.IOException;
  *
  * @author Gareth Williams (466567)
  */
-public class OptionalSerializer extends JsonSerializer<Optional<?>> implements CanSerialize<Optional<?>> {
+public class OptionalSerializer extends JsonSerializer<Optional<?>> {
 
     @Override
     public void serialize(Optional<?> value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonGenerationException {
@@ -23,15 +22,5 @@ public class OptionalSerializer extends JsonSerializer<Optional<?>> implements C
         } else {
             provider.defaultSerializeNull(jgen);
         }
-    }
-
-    @Override
-    public boolean canSerialize(JavaType type) {
-        return Optional.class.isAssignableFrom(type.getRawClass());
-    }
-
-    @Override
-    public JsonSerializer<Optional<?>> getSerializer() {
-        return this;
     }
 }

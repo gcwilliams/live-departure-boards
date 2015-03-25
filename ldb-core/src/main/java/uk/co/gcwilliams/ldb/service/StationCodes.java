@@ -5,6 +5,8 @@ import uk.co.gcwilliams.ldb.model.StationCode;
 import java.util.List;
 
 /**
+ * The station codes
+ *
  * @author Gareth Williams (466567)
  */
 public interface StationCodes {

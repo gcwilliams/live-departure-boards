@@ -14,20 +14,10 @@ import java.io.IOException;
  *
  * @author Gareth Williams (466567)
  */
-public class IdSerializer extends JsonSerializer<Id<?>> implements CanSerialize<Id<?>> {
+public class IdSerializer extends JsonSerializer<Id<?>> {
 
     @Override
     public void serialize(Id<?> value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
         provider.defaultSerializeValue(value.get(), jgen);
-    }
-
-    @Override
-    public boolean canSerialize(JavaType type) {
-        return Id.class.isAssignableFrom(type.getRawClass());
-    }
-
-    @Override
-    public JsonSerializer<Id<?>> getSerializer() {
-        return this;
     }
 }

@@ -52,35 +52,35 @@ public class StationBoardsImpl implements StationBoards {
     }
 
     @Override
-    public StationBoard getArrivalBoard(StationCode stationCode) {
-        return mapStationBoard(ldbServiceSoap.getArrivalBoard(getRequestParameters(stationCode, 20)));
+    public StationBoard getArrivalBoard(StationCode to) {
+        return mapStationBoard(ldbServiceSoap.getArrivalBoard(getRequestParameters(to, 20)));
     }
 
     @Override
-    public StationBoard getArrivalBoard(StationCode stationCode, StationCode from) {
-        GetBoardRequestParams parameters = getRequestParameters(stationCode, 20);
+    public StationBoard getArrivalBoard(StationCode to, StationCode from) {
+        GetBoardRequestParams parameters = getRequestParameters(to, 20);
         parameters.setFilterCrs(from.getStationId().get());
         parameters.setFilterType(FilterType.FROM);
         return mapStationBoard(ldbServiceSoap.getArrivalBoard(parameters));
     }
 
     @Override
-    public StationBoard getDepartureBoard(StationCode stationCode) {
-        return mapStationBoard(ldbServiceSoap.getDepartureBoard(getRequestParameters(stationCode, 20)));
+    public StationBoard getDepartureBoard(StationCode from) {
+        return mapStationBoard(ldbServiceSoap.getDepartureBoard(getRequestParameters(from, 20)));
     }
 
     @Override
-    public StationBoard getDepartureBoard(StationCode stationCode, StationCode to) {
-        GetBoardRequestParams parameters = getRequestParameters(stationCode, 20);
+    public StationBoard getDepartureBoard(StationCode from, StationCode to) {
+        GetBoardRequestParams parameters = getRequestParameters(from, 20);
         parameters.setFilterCrs(to.getStationId().get());
         parameters.setFilterType(FilterType.TO);
         return mapStationBoard(ldbServiceSoap.getArrivalBoard(parameters));
     }
 
     @Override
-    public ServiceDetail getServiceDetail(Id<Service> serviceId) {
+    public ServiceDetail getServiceDetail(Id<Service> id) {
         GetServiceDetailsRequestParams parameters = new GetServiceDetailsRequestParams();
-        parameters.setServiceID(serviceId.get());
+        parameters.setServiceID(id.get());
         ServiceDetailsResponseType response = ldbServiceSoap.getServiceDetails(parameters);
         ServiceDetails2 details = response.getGetServiceDetailsResult();
         ServiceDetailBuilder builder = new ServiceDetailBuilder();

@@ -2,6 +2,11 @@ package uk.co.gcwilliams.serializers;
 
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.Module;
+import org.codehaus.jackson.map.Serializers;
+import org.joda.time.DateTime;
+import uk.co.gcwilliams.ldb.model.Id;
+
+import java.util.Optional;
 
 /**
  * The station boards jackson module
@@ -22,10 +27,11 @@ public class StationBoardsJacksonModule extends Module {
 
     @Override
     public void setupModule(SetupContext context) {
-        context.addSerializers(new StationBoardJacksonSerializers(
-            new IdSerializer(),
-            new OptionalSerializer(),
-            new DateTimeSerializer()
-        ));
+        Serializers serializers = new StationBoardJacksonSerializersBuilder()
+            .addSerializer(Id.class, new IdSerializer())
+            .addSerializer(Optional.class, new OptionalSerializer())
+            .addSerializer(DateTime.class, new DateTimeSerializer())
+            .build();
+        context.addSerializers(serializers);
     }
 }
