@@ -1,12 +1,11 @@
 package uk.co.gcwilliams.serializers;
 
+import com.google.common.base.Optional;
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.Module;
 import org.codehaus.jackson.map.Serializers;
 import org.joda.time.DateTime;
 import uk.co.gcwilliams.ldb.model.Id;
-
-import java.util.Optional;
 
 /**
  * The station boards jackson module

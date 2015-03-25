@@ -26,7 +26,7 @@ public class StationBoardJacksonSerializersBuilder {
      * @param clazz the class the serializer serializes
      * @param serializer the serializer
      */
-    public <T, S extends JsonSerializer<?>> StationBoardJacksonSerializersBuilder addSerializer(Class<T> clazz, S serializer) {
+    public <T, S extends JsonSerializer<? extends T>> StationBoardJacksonSerializersBuilder addSerializer(Class<T> clazz, S serializer) {
         serializers.put(clazz, serializer);
         return this;
     }
