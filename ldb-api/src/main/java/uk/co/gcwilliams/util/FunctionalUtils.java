@@ -1,11 +1,8 @@
 package uk.co.gcwilliams.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collector;
+import java.util.function.Supplier;
 
 /**
  * The functional utils
@@ -15,7 +12,7 @@ import java.util.stream.Collector;
 public class FunctionalUtils {
 
     /**
-     * The checked function, a functional interface that throws a
+     * The checked consumer, a functional interface that throws a
      * checked exception
      *
      * @param <TParam> the input parameter
@@ -24,7 +21,7 @@ public class FunctionalUtils {
     public interface CheckedConsumer<TParam> {
 
         /**
-         * Applies the function to the input value
+         * Applies the consumer to the input value
          *
          * @param param the input param
          */
@@ -83,17 +80,5 @@ public class FunctionalUtils {
                 throw new RuntimeException(ex);
             }
         };
-    }
-
-    /**
-     * An immutable list collector
-     *
-     * @return the immutable list collector
-     */
-    public static <T> Collector<T, List<T>, List<T>> toImmutableList() {
-        return Collector.of(ArrayList::new, List::add, (l, r) -> {
-            l.addAll(r);
-            return l;
-        }, Collections::unmodifiableList);
     }
 }

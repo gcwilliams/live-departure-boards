@@ -4,7 +4,6 @@ import com.google.common.base.Optional;
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.Module;
 import org.codehaus.jackson.map.Serializers;
-import org.joda.time.DateTime;
 import uk.co.gcwilliams.ldb.model.Id;
 
 /**
@@ -29,7 +28,6 @@ public class StationBoardsJacksonModule extends Module {
         Serializers serializers = new StationBoardJacksonSerializersBuilder()
             .addSerializer(Id.class, new IdSerializer())
             .addSerializer(Optional.class, new OptionalSerializer())
-            .addSerializer(DateTime.class, new DateTimeSerializer())
             .build();
         context.addSerializers(serializers);
     }

@@ -6,12 +6,12 @@ import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.map.Serializers;
 import org.codehaus.jackson.type.JavaType;
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import uk.co.gcwilliams.ldb.model.Id;
 
 import java.util.Optional;
 
@@ -46,17 +46,17 @@ public class StationBoardJacksonSerializersBuilderTest {
     public void testFindSerializerWhenItExists() {
 
         // arrange
-        when(type.getRawClass()).thenReturn((Class)DateTime.class);
+        when(type.getRawClass()).thenReturn((Class) Id.class);
 
         Serializers serializers = new StationBoardJacksonSerializersBuilder()
-            .addSerializer(DateTime.class, new DateTimeSerializer())
-            .build();
+                .addSerializer(Id.class, new IdSerializer())
+                .build();
 
         // act
         JsonSerializer<?> serializer = serializers.findSerializer(config, type, beanDesc, property);
 
         // assert
-        assertThat(serializer, instanceOf(DateTimeSerializer.class));
+        assertThat(serializer, instanceOf(IdSerializer.class));
     }
 
     @Test
@@ -64,10 +64,10 @@ public class StationBoardJacksonSerializersBuilderTest {
     public void testFindSerializerWhenItDoesNotExist() {
 
         // arrange
-        when(type.getRawClass()).thenReturn((Class)Optional.class);
+        when(type.getRawClass()).thenReturn((Class) Optional.class);
 
         Serializers serializers = new StationBoardJacksonSerializersBuilder()
-                .addSerializer(DateTime.class, new DateTimeSerializer())
+                .addSerializer(Id.class, new IdSerializer())
                 .build();
 
         // act

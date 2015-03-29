@@ -1,5 +1,6 @@
 package uk.co.gcwilliams.service;
 
+import org.glassfish.jersey.spi.Contract;
 import uk.co.gcwilliams.ldb.model.StationCode;
 
 import javax.ws.rs.QueryParam;
@@ -11,6 +12,7 @@ import java.util.Optional;
  *
  * Created by GWilliams on 25/03/2015.
  */
+@Contract
 public interface StationCodesService {
 
     /**
