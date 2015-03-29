@@ -4,7 +4,9 @@ import com.google.common.base.Optional;
 import org.joda.time.DateTime;
 
 /**
- * @author Gareth Williams (466567)
+ * The previous calling point
+ *
+ * @author Gareth Williams
  */
 public interface PreviousCallingPoint extends CallingPoint {
 

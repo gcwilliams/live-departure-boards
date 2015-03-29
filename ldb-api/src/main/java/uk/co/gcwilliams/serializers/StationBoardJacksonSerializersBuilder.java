@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * The station board serializers
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationBoardJacksonSerializersBuilder {
 

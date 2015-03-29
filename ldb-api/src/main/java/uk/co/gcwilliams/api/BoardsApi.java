@@ -21,7 +21,7 @@ import java.util.Optional;
 /**
  * The boards API
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @RolesAllowed("ldb-api")
 @Path("/boards")

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * The station board builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationBoardBuilder implements Builder<StationBoard> {
 

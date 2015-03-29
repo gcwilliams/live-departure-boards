@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * The calling point
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface CallingPoint extends Serializable {
 

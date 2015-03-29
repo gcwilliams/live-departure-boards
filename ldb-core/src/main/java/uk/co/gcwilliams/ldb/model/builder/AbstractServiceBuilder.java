@@ -6,7 +6,7 @@ import org.joda.time.DateTime;
  * The abstract service builder, contains the common fields between service
  * and service detail
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public abstract class AbstractServiceBuilder {
 

@@ -8,7 +8,7 @@ import uk.co.gcwilliams.ldb.model.StationCode;
 /**
  * The station code builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationCodeBuilder implements Builder<StationCode> {
 

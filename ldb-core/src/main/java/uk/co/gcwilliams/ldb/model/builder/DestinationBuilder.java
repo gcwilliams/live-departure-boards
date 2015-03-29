@@ -7,7 +7,7 @@ import uk.co.gcwilliams.ldb.model.Station;
 /**
  * The location builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class DestinationBuilder implements Builder<Destination> {
 

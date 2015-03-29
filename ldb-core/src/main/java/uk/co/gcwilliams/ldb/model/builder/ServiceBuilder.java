@@ -11,7 +11,7 @@ import uk.co.gcwilliams.ldb.model.Station;
 /**
  * The service builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class ServiceBuilder extends AbstractServiceBuilder implements Builder<Service> {
 

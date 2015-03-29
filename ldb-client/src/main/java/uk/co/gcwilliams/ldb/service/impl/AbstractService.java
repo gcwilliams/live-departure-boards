@@ -37,7 +37,7 @@ import static java.util.Arrays.asList;
 /**
  * The abstract service
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class AbstractService {
 

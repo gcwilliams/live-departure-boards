@@ -12,7 +12,7 @@ import javax.inject.Singleton;
 /**
  * The object mapper provider
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class JacksonJaxbJsonProviderFactory implements Factory<JacksonJaxbJsonProvider> {
 

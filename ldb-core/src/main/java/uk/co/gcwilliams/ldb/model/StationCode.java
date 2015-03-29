@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The station code
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface StationCode extends Serializable {
 

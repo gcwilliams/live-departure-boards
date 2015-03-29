@@ -9,7 +9,7 @@ import uk.co.gcwilliams.ldb.model.Id;
 /**
  * The station boards jackson module
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationBoardsJacksonModule extends Module {
 

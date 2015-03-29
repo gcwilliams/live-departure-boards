@@ -19,7 +19,7 @@ import static com.google.common.collect.Lists.transform;
 /**
  * The station codes implementation
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationCodesImpl extends AbstractService implements StationCodes {
 

@@ -37,7 +37,7 @@ import static uk.co.gcwilliams.ldb.service.TimeParseUtil.tryParseTime;
 /**
  * The departure board service
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationBoardsImpl implements StationBoards {
 

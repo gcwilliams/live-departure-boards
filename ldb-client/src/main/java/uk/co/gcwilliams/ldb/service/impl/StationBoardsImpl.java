@@ -25,7 +25,7 @@ import java.net.URISyntaxException;
 /**
  * The station boards implementation
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationBoardsImpl extends AbstractService implements StationBoards {
 

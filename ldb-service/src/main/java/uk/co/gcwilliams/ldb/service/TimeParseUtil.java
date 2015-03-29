@@ -8,7 +8,7 @@ import org.joda.time.format.DateTimeFormatter;
 /**
  * A utility for parsing time
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 class TimeParseUtil {
 

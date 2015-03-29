@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * The station board
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface StationBoard extends Serializable {
 

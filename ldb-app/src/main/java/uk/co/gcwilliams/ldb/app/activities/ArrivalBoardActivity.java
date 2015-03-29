@@ -6,7 +6,7 @@ import uk.co.gcwilliams.ldb.app.tasks.AbstractStationBoardTask;
 import uk.co.gcwilliams.ldb.app.tasks.ArrivalStationBoardTask;
 
 /**
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @ContentView(R.layout.services)
 public class ArrivalBoardActivity extends AbstractBoardActivity {

@@ -8,7 +8,7 @@ import uk.co.gcwilliams.ldb.model.Station;
 /**
  * The previous calling point builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class PreviousCallingPointBuilder extends AbstractCallingPointBuilder implements Builder<PreviousCallingPoint> {
 

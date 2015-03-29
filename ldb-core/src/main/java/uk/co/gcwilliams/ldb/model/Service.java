@@ -3,7 +3,7 @@ package uk.co.gcwilliams.ldb.model;
 /**
  * The service interface, represents a train service
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface Service extends ServiceInformation {
 

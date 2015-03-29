@@ -11,7 +11,7 @@ import javax.inject.Inject;
 /**
  * The departure station board task
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class DepartureStationBoardTask extends AbstractStationBoardTask {
 

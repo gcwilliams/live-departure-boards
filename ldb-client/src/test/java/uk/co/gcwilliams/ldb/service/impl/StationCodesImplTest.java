@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
 /**
  * The station codes tests
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @RunWith(MockitoJUnitRunner.class)
 public class StationCodesImplTest {

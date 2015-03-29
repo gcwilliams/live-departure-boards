@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 /**
  * A date time deserializer
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class GSonDateTimeDeserializer implements JsonDeserializer<DateTime> {
 

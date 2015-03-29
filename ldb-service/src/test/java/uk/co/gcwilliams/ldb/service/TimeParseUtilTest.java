@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 /**
  * The time parse util tests
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class TimeParseUtilTest {
 

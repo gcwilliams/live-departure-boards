@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * The optional serializer
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class OptionalSerializer extends JsonSerializer<Optional<?>> {
 

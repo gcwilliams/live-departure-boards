@@ -10,7 +10,7 @@ import uk.co.gcwilliams.ldb.model.StationCode;
 import uk.co.gcwilliams.ldb.service.StationBoards;
 
 /**
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public abstract class AbstractStationBoardTask extends AsyncTask<StationCode, Void, StationBoard> {
 

@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class ServicesAdapter extends BaseAdapter {
 

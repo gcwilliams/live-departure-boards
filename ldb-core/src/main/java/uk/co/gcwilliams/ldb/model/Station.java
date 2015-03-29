@@ -3,7 +3,7 @@ package uk.co.gcwilliams.ldb.model;
 import java.io.Serializable;
 
 /**
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface Station extends Serializable {
 

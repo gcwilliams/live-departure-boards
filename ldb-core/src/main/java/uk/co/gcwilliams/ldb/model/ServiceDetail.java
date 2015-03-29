@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * The service details
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface ServiceDetail extends ServiceInformation {
 

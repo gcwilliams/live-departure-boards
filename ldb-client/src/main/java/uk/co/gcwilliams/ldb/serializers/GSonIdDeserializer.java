@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 /**
  * An ID deserializer
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class GSonIdDeserializer<T> implements JsonDeserializer<Id<T>> {
 

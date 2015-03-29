@@ -3,7 +3,7 @@ package uk.co.gcwilliams.ldb.service.impl;
 /**
  * The station board exception
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationBoardException extends RuntimeException {
 

@@ -6,7 +6,7 @@ import org.joda.time.DateTime;
 /**
  * The subsequent calling point
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface SubsequentCallingPoint extends CallingPoint {
 

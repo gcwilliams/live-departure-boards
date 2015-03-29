@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 /**
  * The builder transformation for use with {@link com.google.common.collect.Iterables#transform(Iterable, com.google.common.base.Function)}
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class BuilderTransformation<T> implements Function<Builder<T>, T> {
     @Override

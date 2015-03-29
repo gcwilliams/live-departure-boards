@@ -21,7 +21,7 @@ import uk.co.gcwilliams.ldb.service.StationBoards;
 import javax.inject.Inject;
 
 /**
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public abstract class AbstractBoardActivity extends RoboActivity implements Handler.Callback {
 

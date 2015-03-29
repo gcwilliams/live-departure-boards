@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * The station API
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @RolesAllowed("ldb-api")
 @Path("/stations")

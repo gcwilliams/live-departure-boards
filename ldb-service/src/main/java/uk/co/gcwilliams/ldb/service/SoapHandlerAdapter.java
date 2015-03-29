@@ -6,7 +6,9 @@ import javax.xml.ws.handler.soap.SOAPHandler;
 import java.util.Set;
 
 /**
- * @author Gareth Williams (466567)
+ * The SOAP handler adapter
+ *
+ * @author Gareth Williams
  */
 class SoapHandlerAdapter implements SOAPHandler {
 

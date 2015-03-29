@@ -1,7 +1,7 @@
 package uk.co.gcwilliams.ldb.app;
 
 /**
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public final class LdbConstants {
 

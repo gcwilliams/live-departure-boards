@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * The LDB application
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @ApplicationPath("api")
 public class LdbApplication extends ResourceConfig {
@@ -45,8 +45,12 @@ public class LdbApplication extends ResourceConfig {
         register(new AbstractBinder() {
             @Override
             protected void configure() {
-                bind(StationCodesProperty.class).to(Property.class).qualifiedBy(StationCodesProperty.class.getAnnotation(StationCodes.class));
-                bind(LdbKeyProperty.class).to(Property.class).qualifiedBy(LdbKeyProperty.class.getAnnotation(LdbKey.class));
+                bind(StationCodesProperty.class)
+                    .qualifiedBy(StationCodesProperty.class.getAnnotation(StationCodes.class))
+                    .to(Property.class);
+                bind(LdbKeyProperty.class)
+                    .qualifiedBy(LdbKeyProperty.class.getAnnotation(LdbKey.class))
+                    .to(Property.class);
                 bindFactory(LdbSoapServiceFactory.class).to(LDBServiceSoap.class);
                 bindFactory(LuceneDirectoryReaderFactory.class).to(IndexReader.class);
                 bindFactory(JacksonJaxbJsonProviderFactory.class).to(MessageBodyReader.class).to(MessageBodyWriter.class);

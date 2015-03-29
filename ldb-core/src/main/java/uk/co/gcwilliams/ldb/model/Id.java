@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The ID, a strongly typed ID
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class Id<T> implements Serializable {
 

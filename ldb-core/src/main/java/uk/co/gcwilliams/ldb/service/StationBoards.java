@@ -9,7 +9,7 @@ import uk.co.gcwilliams.ldb.model.StationCode;
 /**
  * The station boards
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface StationBoards {
 

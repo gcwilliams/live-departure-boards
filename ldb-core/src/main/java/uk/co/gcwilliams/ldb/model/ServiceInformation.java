@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * The service information
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface ServiceInformation extends Serializable {
 

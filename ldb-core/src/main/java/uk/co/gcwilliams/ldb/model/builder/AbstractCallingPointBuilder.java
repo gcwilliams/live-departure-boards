@@ -7,7 +7,7 @@ import uk.co.gcwilliams.ldb.model.Station;
 /**
  * The abstract calling point builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public abstract class AbstractCallingPointBuilder {
 

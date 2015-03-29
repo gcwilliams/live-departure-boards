@@ -8,7 +8,7 @@ import uk.co.gcwilliams.ldb.model.SubsequentCallingPoint;
 /**
  * The subsequent calling point builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class SubsequentCallingPointBuilder extends AbstractCallingPointBuilder implements Builder<SubsequentCallingPoint> {
 

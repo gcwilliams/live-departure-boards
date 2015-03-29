@@ -17,7 +17,7 @@ import uk.co.gcwilliams.ldb.app.adapters.StationCodeAdapter;
  * The search activity, the main entry point for the application, this
  * activity allows a user to find a station board
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @ContentView(R.layout.search)
 public class SearchActivity extends RoboActivity implements View.OnClickListener {

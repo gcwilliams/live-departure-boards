@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * The station code adapter
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationCodeAdapter extends BaseAdapter implements Filterable {
 

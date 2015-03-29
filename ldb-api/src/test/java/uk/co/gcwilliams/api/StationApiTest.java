@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 /**
  * The station API tests
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @RunWith(MockitoJUnitRunner.class)
 public class StationApiTest {

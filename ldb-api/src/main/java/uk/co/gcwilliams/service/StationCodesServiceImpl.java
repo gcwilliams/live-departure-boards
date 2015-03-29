@@ -24,7 +24,7 @@ import static uk.co.gcwilliams.util.FunctionalUtils.wrapFunction;
 /**
  * The station codes implementation
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @Service
 public class StationCodesServiceImpl implements StationCodesService {

@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 /**
  * The station boards factory
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class StationBoardsFactory implements Factory<StationBoards> {
 

@@ -33,7 +33,7 @@ import static org.mockito.Mockito.when;
 /**
  * The station board implementation test
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 @RunWith(MockitoJUnitRunner.class)
 public class StationBoardImplTest {

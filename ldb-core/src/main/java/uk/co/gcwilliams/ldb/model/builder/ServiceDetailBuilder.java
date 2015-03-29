@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * The service detail builder
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class ServiceDetailBuilder extends AbstractServiceBuilder implements Builder<ServiceDetail> {
 

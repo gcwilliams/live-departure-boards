@@ -3,7 +3,7 @@ package uk.co.gcwilliams.ldb.model.builder;
 /**
  * The builder interface
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface Builder<T> {
 

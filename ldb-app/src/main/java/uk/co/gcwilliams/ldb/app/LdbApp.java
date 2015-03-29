@@ -24,7 +24,7 @@ import java.util.Properties;
 import static java.lang.String.format;
 
 /**
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class LdbApp extends Application {
 

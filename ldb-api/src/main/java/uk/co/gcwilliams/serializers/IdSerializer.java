@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * The ID serializer
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class IdSerializer extends JsonSerializer<Id<?>> {
 

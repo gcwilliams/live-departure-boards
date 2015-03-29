@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * The location, represents a departure or destination
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public interface Destination extends Serializable {
 

@@ -15,7 +15,7 @@ import javax.xml.ws.handler.soap.SOAPMessageContext;
  * The authentication handler, this sets the authentication token
  * on the soap request
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 class AuthenticationHandler extends SoapHandlerAdapter {
 

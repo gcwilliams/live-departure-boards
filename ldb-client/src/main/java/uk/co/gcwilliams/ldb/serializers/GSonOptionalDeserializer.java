@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 /**
  * An optional deserializer
  *
- * @author Gareth Williams (466567)
+ * @author Gareth Williams
  */
 public class GSonOptionalDeserializer implements JsonDeserializer<Optional> {
 
