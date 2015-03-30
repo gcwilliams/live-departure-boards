@@ -18,7 +18,7 @@ public abstract class ReflectiveBinder implements Binder {
     @SuppressWarnings("unchecked")
     public final void bind(DynamicConfiguration configuration) {
         bind().forEach(configuration::addActiveDescriptor);
-        bindFactories().forEach(configuration::addActiveFactoryDescriptor);
+        bindFactories().forEach(c -> configuration.addActiveFactoryDescriptor((Class<? extends Factory<Object>>)c));
     }
 
     /**
@@ -35,7 +35,7 @@ public abstract class ReflectiveBinder implements Binder {
      *
      * @return the stream of classes to bind
      */
-    protected Stream<Class<? extends Factory>> bindFactories() {
+    protected Stream<Class<? extends Factory<?>>> bindFactories() {
         return Stream.empty();
     }
 }

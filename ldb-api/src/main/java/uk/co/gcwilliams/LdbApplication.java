@@ -46,7 +46,7 @@ public class LdbApplication extends ResourceConfig {
             }
 
             @Override
-            protected Stream<Class<? extends Factory>> bindFactories() {
+            protected Stream<Class<? extends Factory<?>>> bindFactories() {
                 return of(
                     LdbSoapServiceFactory.class,
                     LuceneDirectoryReaderFactory.class,
