@@ -1,6 +1,6 @@
 package uk.co.gcwilliams.service;
 
-import org.glassfish.jersey.spi.Contract;
+import org.jvnet.hk2.annotations.Contract;
 import uk.co.gcwilliams.ldb.model.StationCode;
 
 import javax.ws.rs.QueryParam;

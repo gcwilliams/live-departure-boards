@@ -1,6 +1,7 @@
 package uk.co.gcwilliams.factory;
 
 import org.glassfish.hk2.api.Factory;
+import org.jvnet.hk2.annotations.Service;
 import uk.co.gcwilliams.ldb.service.StationBoards;
 import uk.co.gcwilliams.ldb.service.StationBoardsImpl;
 import uk.co.gcwilliams.ldb.stubs.LDBServiceSoap;
@@ -15,6 +16,7 @@ import javax.inject.Singleton;
  *
  * @author Gareth Williams
  */
+@Service
 public class StationBoardsFactory implements Factory<StationBoards> {
 
     private final StationBoards boards;

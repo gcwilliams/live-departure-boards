@@ -1,4 +1,4 @@
-package uk.co.gcwilliams.factory;
+package uk.co.gcwilliams.feature;
 
 
 import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
@@ -8,13 +8,17 @@ import org.glassfish.hk2.api.Factory;
 import uk.co.gcwilliams.serializers.StationBoardsJacksonModule;
 
 import javax.inject.Singleton;
+import javax.ws.rs.core.Feature;
+import javax.ws.rs.core.FeatureContext;
+import javax.ws.rs.ext.MessageBodyReader;
+import javax.ws.rs.ext.MessageBodyWriter;
 
 /**
- * The object mapper provider
+ * The jackson jaxb json feature
  *
  * @author Gareth Williams
  */
-public class JacksonJaxbJsonProviderFactory implements Factory<JacksonJaxbJsonProvider> {
+public class LdbJacksonJaxbJsonFeature implements Feature {
 
     private final JacksonJaxbJsonProvider jacksonJaxbJsonProvider = new JacksonJaxbJsonProvider();
 
@@ -22,7 +26,7 @@ public class JacksonJaxbJsonProviderFactory implements Factory<JacksonJaxbJsonPr
      * Default constructor
      *
      */
-    public JacksonJaxbJsonProviderFactory() {
+    public LdbJacksonJaxbJsonFeature() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
         mapper.configure(SerializationConfig.Feature.REQUIRE_SETTERS_FOR_GETTERS, false);
@@ -32,11 +36,8 @@ public class JacksonJaxbJsonProviderFactory implements Factory<JacksonJaxbJsonPr
     }
 
     @Override
-    @Singleton
-    public JacksonJaxbJsonProvider provide() {
-        return jacksonJaxbJsonProvider;
+    public boolean configure(FeatureContext context) {
+        context.register(jacksonJaxbJsonProvider, MessageBodyReader.class, MessageBodyWriter.class);
+        return false;
     }
-
-    @Override
-    public void dispose(JacksonJaxbJsonProvider jacksonJaxbJsonProvider) { }
 }

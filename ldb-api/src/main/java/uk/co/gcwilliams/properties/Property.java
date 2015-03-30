@@ -1,6 +1,6 @@
 package uk.co.gcwilliams.properties;
 
-import org.glassfish.jersey.spi.Contract;
+import org.jvnet.hk2.annotations.Contract;
 
 /**
  * The property provider

@@ -1,6 +1,7 @@
 package uk.co.gcwilliams.factory;
 
 import org.glassfish.hk2.api.Factory;
+import org.jvnet.hk2.annotations.Service;
 import uk.co.gcwilliams.ldb.model.StationCode;
 import uk.co.gcwilliams.ldb.model.builder.StationCodeBuilder;
 import uk.co.gcwilliams.properties.Property;
@@ -29,6 +30,7 @@ import static uk.co.gcwilliams.util.ImmutableCollectors.toImmutableList;
  *
  * Created by GWilliams on 27/03/2015.
  */
+@Service
 public class StationCodeReaderFactory implements Factory<List<StationCode>> {
 
     private static final Pattern STATION_PATTERN = Pattern.compile("^(.+)=(.+)$");

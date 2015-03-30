@@ -1,30 +1,22 @@
 package uk.co.gcwilliams;
 
-import org.apache.lucene.index.IndexReader;
-import org.glassfish.hk2.api.TypeLiteral;
-import org.glassfish.hk2.utilities.binding.AbstractBinder;
+import org.glassfish.hk2.api.Factory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import uk.co.gcwilliams.factory.LdbSoapServiceFactory;
 import uk.co.gcwilliams.factory.LuceneDirectoryReaderFactory;
-import uk.co.gcwilliams.factory.JacksonJaxbJsonProviderFactory;
 import uk.co.gcwilliams.factory.StationBoardsFactory;
 import uk.co.gcwilliams.factory.StationCodeReaderFactory;
-import uk.co.gcwilliams.ldb.model.StationCode;
-import uk.co.gcwilliams.ldb.service.StationBoards;
-import uk.co.gcwilliams.ldb.stubs.LDBServiceSoap;
-import uk.co.gcwilliams.properties.LdbKey;
+import uk.co.gcwilliams.feature.LdbJacksonJaxbJsonFeature;
+import uk.co.gcwilliams.injection.ReflectiveBinder;
 import uk.co.gcwilliams.properties.LdbKeyProperty;
-import uk.co.gcwilliams.properties.Property;
-import uk.co.gcwilliams.properties.StationCodes;
 import uk.co.gcwilliams.properties.StationCodesProperty;
-import uk.co.gcwilliams.service.StationCodesService;
 import uk.co.gcwilliams.service.StationCodesServiceImpl;
 
 import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.ext.MessageBodyReader;
-import javax.ws.rs.ext.MessageBodyWriter;
-import java.util.List;
+import java.util.stream.Stream;
+
+import static java.util.stream.Stream.of;
 
 /**
  * The LDB application
@@ -41,21 +33,26 @@ public class LdbApplication extends ResourceConfig {
     public LdbApplication() {
         packages("uk.co.gcwilliams.api");
         register(RolesAllowedDynamicFeature.class);
-        register(StationCodesServiceImpl.class, StationCodesService.class);
-        register(new AbstractBinder() {
+        register(LdbJacksonJaxbJsonFeature.class);
+        register(new ReflectiveBinder() {
+
             @Override
-            protected void configure() {
-                bind(StationCodesProperty.class)
-                    .qualifiedBy(StationCodesProperty.class.getAnnotation(StationCodes.class))
-                    .to(Property.class);
-                bind(LdbKeyProperty.class)
-                    .qualifiedBy(LdbKeyProperty.class.getAnnotation(LdbKey.class))
-                    .to(Property.class);
-                bindFactory(LdbSoapServiceFactory.class).to(LDBServiceSoap.class);
-                bindFactory(LuceneDirectoryReaderFactory.class).to(IndexReader.class);
-                bindFactory(JacksonJaxbJsonProviderFactory.class).to(MessageBodyReader.class).to(MessageBodyWriter.class);
-                bindFactory(StationBoardsFactory.class).to(StationBoards.class);
-                bindFactory(StationCodeReaderFactory.class).to(new TypeLiteral<List<StationCode>>() { });
+            protected Stream<Class<?>> bind() {
+                return of(
+                    StationCodesServiceImpl.class,
+                    StationCodesProperty.class,
+                    LdbKeyProperty.class
+                );
+            }
+
+            @Override
+            protected Stream<Class<? extends Factory>> bindFactories() {
+                return of(
+                    LdbSoapServiceFactory.class,
+                    LuceneDirectoryReaderFactory.class,
+                    StationBoardsFactory.class,
+                    StationCodeReaderFactory.class
+                );
             }
         });
     }

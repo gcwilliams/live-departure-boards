@@ -6,6 +6,7 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexableField;
@@ -13,6 +14,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 import org.glassfish.hk2.api.Factory;
+import org.jvnet.hk2.annotations.Service;
 import uk.co.gcwilliams.ldb.model.StationCode;
 
 import javax.inject.Inject;
@@ -31,7 +33,8 @@ import static uk.co.gcwilliams.util.FunctionalUtils.wrapFunction;
  *
  * Created by GWilliams on 27/03/2015.
  */
-public class LuceneDirectoryReaderFactory implements Factory<DirectoryReader> {
+@Service
+public class LuceneDirectoryReaderFactory implements Factory<IndexReader> {
 
     private final Function<Directory, DirectoryReader> open = wrapFunction(DirectoryReader::open);
 
@@ -53,7 +56,7 @@ public class LuceneDirectoryReaderFactory implements Factory<DirectoryReader> {
 
     @Override
     @Singleton
-    public DirectoryReader provide() {
+    public IndexReader provide() {
         IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_4_10_2, new StandardAnalyzer());
         try (IndexWriter writer = new IndexWriter(index, config)) {
             stationCodes.stream().map(sc -> Lists.<IndexableField>newArrayList(
@@ -67,7 +70,7 @@ public class LuceneDirectoryReaderFactory implements Factory<DirectoryReader> {
     }
 
     @Override
-    public void dispose(DirectoryReader reader) {
+    public void dispose(IndexReader reader) {
         close.accept(reader);
     }
 }
