@@ -64,7 +64,7 @@ public class LuceneDirectoryReaderFactory implements Factory<IndexReader> {
                     new StringField("id", sc.getStationId().get(), Field.Store.YES)
             )).forEach(wrapConsumer(writer::addDocument));
         } catch (IOException ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException("Unable to create station code index reader", ex);
         }
         return open.apply(index);
     }
