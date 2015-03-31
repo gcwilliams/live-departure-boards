@@ -9,6 +9,7 @@ import uk.co.gcwilliams.factory.StationBoardsFactory;
 import uk.co.gcwilliams.factory.StationCodeReaderFactory;
 import uk.co.gcwilliams.feature.LdbJacksonJaxbJsonFeature;
 import uk.co.gcwilliams.injection.ReflectiveBinder;
+import uk.co.gcwilliams.logging.LoggingInterceptionService;
 import uk.co.gcwilliams.properties.LdbKeyProperty;
 import uk.co.gcwilliams.properties.StationCodesProperty;
 import uk.co.gcwilliams.service.StationCodesServiceImpl;
@@ -39,6 +40,7 @@ public class LdbApplication extends ResourceConfig {
             @Override
             protected Stream<Class<?>> bind() {
                 return of(
+                    LoggingInterceptionService.class,
                     StationCodesServiceImpl.class,
                     StationCodesProperty.class,
                     LdbKeyProperty.class

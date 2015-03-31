@@ -2,6 +2,7 @@ package uk.co.gcwilliams.api;
 
 import com.google.common.base.Strings;
 import uk.co.gcwilliams.ldb.model.StationCode;
+import uk.co.gcwilliams.logging.Loggable;
 import uk.co.gcwilliams.service.StationCodesService;
 
 import javax.annotation.security.RolesAllowed;
@@ -18,8 +19,7 @@ import java.util.List;
  *
  * @author Gareth Williams
  */
-@RolesAllowed("ldb-api")
-@Path("/stations")
+@RolesAllowed("ldb-api") @Path("/stations") @Loggable
 public class StationApi {
 
     private final StationCodesService stationCodesService;

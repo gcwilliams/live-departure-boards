@@ -4,6 +4,7 @@ import org.glassfish.hk2.api.Factory;
 import org.jvnet.hk2.annotations.Service;
 import uk.co.gcwilliams.ldb.stubs.LDBServiceSoap;
 import uk.co.gcwilliams.ldb.stubs.Ldb;
+import uk.co.gcwilliams.logging.Loggable;
 
 import javax.inject.Singleton;
 
@@ -12,7 +13,7 @@ import javax.inject.Singleton;
  *
  * Created by GWilliams on 27/03/2015.
  */
-@Service
+@Service @Loggable
 public class LdbSoapServiceFactory implements Factory<LDBServiceSoap> {
 
     @Override

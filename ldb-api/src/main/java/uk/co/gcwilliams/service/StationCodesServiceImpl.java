@@ -9,6 +9,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.jvnet.hk2.annotations.Service;
 import uk.co.gcwilliams.ldb.model.StationCode;
+import uk.co.gcwilliams.logging.Loggable;
 
 import javax.inject.Inject;
 import javax.ws.rs.QueryParam;
@@ -26,7 +27,7 @@ import static uk.co.gcwilliams.util.FunctionalUtils.wrapFunction;
  *
  * @author Gareth Williams
  */
-@Service
+@Service @Loggable
 public class StationCodesServiceImpl implements StationCodesService {
 
     private final StandardAnalyzer analyzer = new StandardAnalyzer();

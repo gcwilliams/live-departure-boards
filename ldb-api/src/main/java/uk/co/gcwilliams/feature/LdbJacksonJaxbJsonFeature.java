@@ -4,10 +4,8 @@ package uk.co.gcwilliams.feature;
 import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
-import org.glassfish.hk2.api.Factory;
 import uk.co.gcwilliams.serializers.StationBoardsJacksonModule;
 
-import javax.inject.Singleton;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.ext.MessageBodyReader;
@@ -38,6 +36,6 @@ public class LdbJacksonJaxbJsonFeature implements Feature {
     @Override
     public boolean configure(FeatureContext context) {
         context.register(jacksonJaxbJsonProvider, MessageBodyReader.class, MessageBodyWriter.class);
-        return false;
+        return true;
     }
 }

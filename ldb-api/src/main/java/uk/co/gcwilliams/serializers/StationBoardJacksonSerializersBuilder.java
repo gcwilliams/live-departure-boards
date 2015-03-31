@@ -1,6 +1,7 @@
 package uk.co.gcwilliams.serializers;
 
 import com.google.common.collect.Maps;
+import org.apache.lucene.analysis.util.CharArrayMap;
 import org.codehaus.jackson.map.BeanDescription;
 import org.codehaus.jackson.map.BeanProperty;
 import org.codehaus.jackson.map.JsonSerializer;
@@ -65,7 +66,12 @@ public class StationBoardJacksonSerializersBuilder {
                 JavaType type,
                 BeanDescription beanDesc,
                 BeanProperty property) {
-            return serializers.get(type.getRawClass());
+            return serializers.entrySet()
+                .stream()
+                .filter(e -> e.getKey().isAssignableFrom(type.getRawClass()))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(null);
         }
     }
 }

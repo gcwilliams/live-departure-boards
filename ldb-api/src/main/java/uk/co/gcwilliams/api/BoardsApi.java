@@ -6,6 +6,7 @@ import uk.co.gcwilliams.ldb.model.ServiceDetail;
 import uk.co.gcwilliams.ldb.model.StationBoard;
 import uk.co.gcwilliams.ldb.model.StationCode;
 import uk.co.gcwilliams.ldb.service.StationBoards;
+import uk.co.gcwilliams.logging.Loggable;
 import uk.co.gcwilliams.service.StationCodesService;
 
 import javax.annotation.security.RolesAllowed;
@@ -23,8 +24,7 @@ import java.util.Optional;
  *
  * @author Gareth Williams
  */
-@RolesAllowed("ldb-api")
-@Path("/boards")
+@RolesAllowed("ldb-api") @Path("/boards") @Loggable
 public class BoardsApi {
 
     private final StationCodesService stationCodesService;

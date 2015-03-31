@@ -16,6 +16,7 @@ import org.apache.lucene.util.Version;
 import org.glassfish.hk2.api.Factory;
 import org.jvnet.hk2.annotations.Service;
 import uk.co.gcwilliams.ldb.model.StationCode;
+import uk.co.gcwilliams.logging.Loggable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -33,7 +34,7 @@ import static uk.co.gcwilliams.util.FunctionalUtils.wrapFunction;
  *
  * Created by GWilliams on 27/03/2015.
  */
-@Service
+@Service @Loggable
 public class LuceneDirectoryReaderFactory implements Factory<IndexReader> {
 
     private final Function<Directory, DirectoryReader> open = wrapFunction(DirectoryReader::open);
