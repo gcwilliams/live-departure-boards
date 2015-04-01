@@ -1,4 +1,4 @@
-package uk.co.gcwilliams.ldb.service.impl;
+package uk.co.gcwilliams.ldb.service;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
@@ -19,6 +19,7 @@ import uk.co.gcwilliams.ldb.model.ServiceDetail;
 import uk.co.gcwilliams.ldb.model.StationBoard;
 import uk.co.gcwilliams.ldb.model.StationCode;
 import uk.co.gcwilliams.ldb.model.builder.StationCodeBuilder;
+import uk.co.gcwilliams.ldb.service.StationBoardsImpl;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

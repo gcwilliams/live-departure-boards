@@ -11,6 +11,7 @@ import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.eq;
@@ -28,7 +29,7 @@ public class LdbJacksonJaxbJsonFeatureTest {
     private FeatureContext featureContext;
 
     @Test
-    public void testProviderIsRegistered() {
+    public void testFeatureIsRegistered() {
 
         // arrange
         LdbJacksonJaxbJsonFeature feature = new LdbJacksonJaxbJsonFeature();
@@ -40,5 +41,18 @@ public class LdbJacksonJaxbJsonFeatureTest {
         ArgumentCaptor<Object> captor = ArgumentCaptor.forClass(Object.class);
         verify(featureContext).register(captor.capture(), eq(MessageBodyReader.class), eq(MessageBodyWriter.class));
         assertThat(captor.getValue(), instanceOf(JacksonJaxbJsonProvider.class));
+    }
+
+    @Test
+    public void testFeatureIsRegisteredSuccessfully() {
+
+        // arrange
+        LdbJacksonJaxbJsonFeature feature = new LdbJacksonJaxbJsonFeature();
+
+        // act
+        boolean isRegistered = feature.configure(featureContext);
+
+        // assert
+        assertThat(isRegistered, equalTo(true));
     }
 }

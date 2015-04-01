@@ -8,21 +8,8 @@
         </layout>
     </appender>
 
-    <appender name="rollingAppender" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="/var/log/ldb-api.log" />
-        <param name="DatePattern" value="'.'yyyy-MM-dd" />
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss} %5p %c{1} - %m%n"/>
-        </layout>
-    </appender>
-
-    <logger name="uk.co.gcwilliams">
-        <level value="ERROR"/>
-        <appender-ref ref="rollingAppender"/>
-    </logger>
-
     <root>
-        <level value="OFF"/>
+        <level value="INFO"/>
         <appender-ref ref="consoleAppender"/>
     </root>
 

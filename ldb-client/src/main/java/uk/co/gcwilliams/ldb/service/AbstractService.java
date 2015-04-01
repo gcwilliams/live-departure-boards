@@ -1,4 +1,4 @@
-package uk.co.gcwilliams.ldb.service.impl;
+package uk.co.gcwilliams.ldb.service;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Function;

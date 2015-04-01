@@ -19,7 +19,7 @@ public abstract class InterceptionServiceAdapter implements InterceptionService 
 
     @Override
     public Filter getDescriptorFilter() {
-        return BuilderHelper.allFilter();
+        return (d) -> true;
     }
 
     @Override

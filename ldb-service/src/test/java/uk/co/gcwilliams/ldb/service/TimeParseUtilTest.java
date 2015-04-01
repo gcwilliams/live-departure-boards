@@ -5,6 +5,7 @@ import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
@@ -53,6 +54,7 @@ public class TimeParseUtilTest {
         DateTime result = TimeParseUtil.tryParseTime(time);
 
         // assert
+        assertThat(result, notNullValue());
         assertThat(result.getYear(), equalTo(now.getYear()));
         assertThat(result.getMonthOfYear(), equalTo(now.getMonthOfYear()));
         assertThat(result.getDayOfMonth(), equalTo(now.getDayOfMonth()));

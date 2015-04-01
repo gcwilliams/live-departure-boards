@@ -18,6 +18,12 @@ class TimeParseUtil {
 
     private TimeParseUtil() {} // static class
 
+    /**
+     * Parses the time HH:MM into a JODA date time, with the time zone of Europe/London
+     *
+     * @param maybeTime the string which may be a time
+     * @return the DateTime, or null
+     */
     static DateTime tryParseTime(String maybeTime) {
         try {
             DateTime now = DateTime.now().withZone(LONDON);

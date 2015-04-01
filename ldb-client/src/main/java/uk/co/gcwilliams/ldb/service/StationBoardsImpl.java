@@ -1,14 +1,6 @@
-package uk.co.gcwilliams.ldb.service.impl;
+package uk.co.gcwilliams.ldb.service;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
-import com.google.common.net.HttpHeaders;
-import com.google.common.net.MediaType;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.utils.URIBuilder;
 import uk.co.gcwilliams.ldb.model.Id;
 import uk.co.gcwilliams.ldb.model.Service;
 import uk.co.gcwilliams.ldb.model.ServiceDetail;
@@ -16,11 +8,6 @@ import uk.co.gcwilliams.ldb.model.StationBoard;
 import uk.co.gcwilliams.ldb.model.StationCode;
 import uk.co.gcwilliams.ldb.model.builder.ServiceDetailBuilder;
 import uk.co.gcwilliams.ldb.model.builder.StationBoardBuilder;
-import uk.co.gcwilliams.ldb.service.StationBoards;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 
 /**
  * The station boards implementation

@@ -2,12 +2,10 @@ package uk.co.gcwilliams.ldb.app;
 
 import android.app.Application;
 import android.net.http.AndroidHttpClient;
-import com.google.common.base.Charsets;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Provider;
-import android.util.Base64;
 import roboguice.RoboGuice;
 import uk.co.gcwilliams.ldb.app.adapters.StationCodeAdapter;
 import uk.co.gcwilliams.ldb.app.tasks.ArrivalStationBoardTask;
@@ -16,8 +14,8 @@ import uk.co.gcwilliams.ldb.app.util.AuthenticationUtil;
 import uk.co.gcwilliams.ldb.app.util.PropertyUtil;
 import uk.co.gcwilliams.ldb.service.StationBoards;
 import uk.co.gcwilliams.ldb.service.StationCodes;
-import uk.co.gcwilliams.ldb.service.impl.StationBoardsImpl;
-import uk.co.gcwilliams.ldb.service.impl.StationCodesImpl;
+import uk.co.gcwilliams.ldb.service.StationBoardsImpl;
+import uk.co.gcwilliams.ldb.service.StationCodesImpl;
 
 import java.util.Properties;
 

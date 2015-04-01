@@ -43,6 +43,12 @@ public class StationBoardsImpl implements StationBoards {
 
     private final LDBServiceSoap ldbServiceSoap;
 
+    /**
+     * Default constructor
+     *
+     * @param ldbServiceSoap the LDB soap service
+     * @param accessToken the access token
+     */
     public StationBoardsImpl(LDBServiceSoap ldbServiceSoap, String accessToken) {
         this.ldbServiceSoap = ldbServiceSoap;
         BindingProvider bindingProvider = ((BindingProvider)this.ldbServiceSoap);
@@ -104,6 +110,13 @@ public class StationBoardsImpl implements StationBoards {
             .build();
     }
 
+    /**
+     * Gets the request parameters
+     *
+     * @param stationCode the station code
+     * @param count the number of rows to return
+     * @return the board request
+     */
     private GetBoardRequestParams getRequestParameters(StationCode stationCode, int count) {
         GetBoardRequestParams parameters = new GetBoardRequestParams();
         parameters.setTimeWindow(120);
@@ -112,6 +125,12 @@ public class StationBoardsImpl implements StationBoards {
         return parameters;
     }
 
+    /**
+     * Maps a station board from a SOAP response
+     *
+     * @param response the soap response
+     * @return the station board
+     */
     private static StationBoard mapStationBoard(StationBoardResponseType response) {
 
         StationBoard2 board = response.getGetStationBoardResult();
@@ -132,6 +151,12 @@ public class StationBoardsImpl implements StationBoards {
         return builder.setServices(services).build();
     }
 
+    /**
+     * Maps a previous calling points from a SOAP response
+     *
+     * @param allCallingPoints the calling points
+     * @return the calling points
+     */
     private static List<List<PreviousCallingPointBuilder>> mapPreviousCallingPoints(List<ArrayOfCallingPoints2> allCallingPoints) {
         List<List<PreviousCallingPointBuilder>> allMappedCallingPoints = Lists.newArrayList();
         for (ArrayOfCallingPoints2 callingPoints : allCallingPoints) {
@@ -147,6 +172,12 @@ public class StationBoardsImpl implements StationBoards {
         return allMappedCallingPoints;
     }
 
+    /**
+     * Maps a subsequent calling points from a SOAP response
+     *
+     * @param allCallingPoints the calling points
+     * @return the calling points
+     */
     private static List<List<SubsequentCallingPointBuilder>> mapSubsequentCallingPoints(List<ArrayOfCallingPoints2> allCallingPoints) {
         List<List<SubsequentCallingPointBuilder>> allMappedCallingPoints = Lists.newArrayList();
         for (ArrayOfCallingPoints2 callingPoints : allCallingPoints) {
@@ -162,6 +193,12 @@ public class StationBoardsImpl implements StationBoards {
         return allMappedCallingPoints;
     }
 
+    /**
+     * Maps a service from a SOAP response
+     *
+     * @param service the service
+     * @return the service
+     */
     private static ServiceBuilder mapService(ServiceItem2 service) {
 
         ServiceLocation2 origin = Iterables.getFirst(service.getOrigin().getLocation(), null);
@@ -169,7 +206,7 @@ public class StationBoardsImpl implements StationBoards {
 
         return new ServiceBuilder()
             .setOrigin(mapStation(origin))
-            .setDestination(mapLocation(departure))
+            .setDestination(mapDestination(departure))
             .setOperator(service.getOperator())
             .setOperatorCode(service.getOperatorCode())
             .setPlatform(tryParseInt(service.getPlatform()))
@@ -180,18 +217,43 @@ public class StationBoardsImpl implements StationBoards {
             .setServiceId(service.getServiceID());
     }
 
-    private static DestinationBuilder mapLocation(ServiceLocation2 serviceLocation) {
+    /**
+     * Maps a destination
+     *
+     * @param serviceLocation the service location
+     * @return the destination
+     */
+    private static DestinationBuilder mapDestination(ServiceLocation2 serviceLocation) {
         return new DestinationBuilder().setStation(mapStation(serviceLocation)).setVia(serviceLocation.getVia());
     }
 
+    /**
+     * Maps a station
+     *
+     * @param serviceLocation the service location
+     * @return the station
+     */
     private static StationBuilder mapStation(ServiceLocation2 serviceLocation) {
         return mapStation(serviceLocation.getLocationName(), serviceLocation.getCrs());
     }
 
+    /**
+     * Maps a station
+     *
+     * @param stationName the station name
+     * @param stationId the service ID
+     * @return the station
+     */
     private static StationBuilder mapStation(String stationName, String stationId) {
         return new StationBuilder().setName(stationName).setStationId(stationId);
     }
 
+    /**
+     * Attempts to parse the string as an integer, return null if it fails
+     *
+     * @param maybeInt the string that maybe an integer
+     * @return the integer or null
+     */
     private static Integer tryParseInt(String maybeInt) {
         try {
             return Integer.parseInt(maybeInt, 10);

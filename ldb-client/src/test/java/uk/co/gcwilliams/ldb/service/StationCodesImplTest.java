@@ -1,4 +1,4 @@
-package uk.co.gcwilliams.ldb.service.impl;
+package uk.co.gcwilliams.ldb.service;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
@@ -15,6 +15,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import uk.co.gcwilliams.ldb.model.StationCode;
+import uk.co.gcwilliams.ldb.service.StationCodesImpl;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

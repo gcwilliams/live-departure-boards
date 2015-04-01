@@ -1,4 +1,4 @@
-package uk.co.gcwilliams.ldb.service.impl;
+package uk.co.gcwilliams.ldb.service;
 
 /**
  * The station board exception
