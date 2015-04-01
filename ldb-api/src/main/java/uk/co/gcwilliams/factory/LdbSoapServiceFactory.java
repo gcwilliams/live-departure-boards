@@ -13,11 +13,12 @@ import javax.inject.Singleton;
  *
  * Created by GWilliams on 27/03/2015.
  */
-@Service @Loggable
+@Service
 public class LdbSoapServiceFactory implements Factory<LDBServiceSoap> {
 
     @Override
     @Singleton
+    @Loggable
     public LDBServiceSoap provide() {
         return new Ldb().getLDBServiceSoap12();
     }

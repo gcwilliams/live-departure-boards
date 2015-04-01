@@ -24,7 +24,7 @@ import java.util.Optional;
  *
  * @author Gareth Williams
  */
-@RolesAllowed("ldb-api") @Path("/boards") @Loggable
+@RolesAllowed("ldb-api") @Path("/boards")
 public class BoardsApi {
 
     private final StationCodesService stationCodesService;
@@ -52,6 +52,7 @@ public class BoardsApi {
      */
     @GET
     @Path("/departures/{from}")
+    @Loggable
     public StationBoard getDeparturesBoard(@PathParam("from") String from, @QueryParam("to") String to) {
 
         Optional<StationCode> code = stationCodesService.getCode(from);
@@ -81,6 +82,7 @@ public class BoardsApi {
      */
     @GET
     @Path("/arrivals/{to}")
+    @Loggable
     public StationBoard getArrivalsBoard(@PathParam("to") String to, @QueryParam("from") String from) {
 
         Optional<StationCode> code = stationCodesService.getCode(to);

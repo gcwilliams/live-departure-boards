@@ -8,10 +8,11 @@ import uk.co.gcwilliams.logging.Loggable;
  *
  * Created by GWilliams on 27/03/2015.
  */
-@Service @LdbKey @Loggable
+@Service @LdbKey
 public class LdbKeyProperty implements Property {
 
     @Override
+    @Loggable
     public String get() {
         return System.getProperty("ldb-key");
     }

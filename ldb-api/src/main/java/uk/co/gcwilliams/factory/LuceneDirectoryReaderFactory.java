@@ -34,7 +34,7 @@ import static uk.co.gcwilliams.util.FunctionalUtils.wrapFunction;
  *
  * Created by GWilliams on 27/03/2015.
  */
-@Service @Loggable
+@Service
 public class LuceneDirectoryReaderFactory implements Factory<IndexReader> {
 
     private final Function<Directory, DirectoryReader> open = wrapFunction(DirectoryReader::open);
@@ -57,6 +57,7 @@ public class LuceneDirectoryReaderFactory implements Factory<IndexReader> {
 
     @Override
     @Singleton
+    @Loggable
     public IndexReader provide() {
         IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_4_10_2, new StandardAnalyzer());
         try (IndexWriter writer = new IndexWriter(index, config)) {
@@ -71,6 +72,7 @@ public class LuceneDirectoryReaderFactory implements Factory<IndexReader> {
     }
 
     @Override
+    @Loggable
     public void dispose(IndexReader reader) {
         close.accept(reader);
     }

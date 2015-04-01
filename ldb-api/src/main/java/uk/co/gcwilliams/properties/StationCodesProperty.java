@@ -8,10 +8,11 @@ import uk.co.gcwilliams.logging.Loggable;
  *
  * Created by GWilliams on 27/03/2015.
  */
-@Service @StationCodes @Loggable
+@Service @StationCodes
 public class StationCodesProperty implements Property {
 
     @Override
+    @Loggable
     public String get() {
         return System.getProperty("station-codes");
     }

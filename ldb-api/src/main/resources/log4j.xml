@@ -8,9 +8,13 @@
         </layout>
     </appender>
 
-    <root>
-        <level value="INFO"/>
+    <logger name="uk.co.gcwilliams">
+        <level value="DEBUG"/>
         <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <root>
+        <level value="OFF"/>
     </root>
 
 </log4j:configuration>

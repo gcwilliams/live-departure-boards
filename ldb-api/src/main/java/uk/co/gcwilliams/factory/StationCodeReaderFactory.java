@@ -31,7 +31,7 @@ import static uk.co.gcwilliams.util.ImmutableCollectors.toImmutableList;
  *
  * Created by GWilliams on 27/03/2015.
  */
-@Service @Loggable
+@Service
 public class StationCodeReaderFactory implements Factory<List<StationCode>> {
 
     private static final Pattern STATION_PATTERN = Pattern.compile("^(.+)=(.+)$");
@@ -55,6 +55,7 @@ public class StationCodeReaderFactory implements Factory<List<StationCode>> {
 
     @Override
     @Singleton
+    @Loggable
     public List<StationCode> provide() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(stationCodesProperty.get()))))) {
             return reader.lines().map(STATION_CODE_MAPPER).flatMap(identity()).collect(toImmutableList());

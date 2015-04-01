@@ -1,7 +1,6 @@
 package uk.co.gcwilliams.logging;
 
 import org.aopalliance.intercept.MethodInterceptor;
-import org.glassfish.hk2.api.Filter;
 import org.jvnet.hk2.annotations.Service;
 import uk.co.gcwilliams.interceptor.InterceptionServiceAdapter;
 
@@ -19,12 +18,10 @@ import static java.util.Collections.singletonList;
 public class LoggingInterceptionService extends InterceptionServiceAdapter {
 
     @Override
-    public Filter getDescriptorFilter() {
-        return (d) -> d.getQualifiers().contains(Loggable.class.getName());
-    }
-
-    @Override
     public List<MethodInterceptor> getMethodInterceptors(Method method) {
-        return singletonList(new LoggingMethodInterceptor(method.getDeclaringClass()));
+        if (method.getAnnotation(Loggable.class) != null) {
+            return singletonList(new LoggingMethodInterceptor(method.getDeclaringClass()));
+        }
+        return null;
     }
 }

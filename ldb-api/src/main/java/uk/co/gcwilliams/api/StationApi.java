@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author Gareth Williams
  */
-@RolesAllowed("ldb-api") @Path("/stations") @Loggable
+@RolesAllowed("ldb-api") @Path("/stations")
 public class StationApi {
 
     private final StationCodesService stationCodesService;
@@ -41,6 +41,7 @@ public class StationApi {
      * @return the suggested codes
      */
     @GET
+    @Loggable
     public List<StationCode> find(@QueryParam("name") String term) {
         if (Strings.isNullOrEmpty(term)) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);

@@ -27,7 +27,7 @@ import static uk.co.gcwilliams.util.FunctionalUtils.wrapFunction;
  *
  * @author Gareth Williams
  */
-@Service @Loggable
+@Service
 public class StationCodesServiceImpl implements StationCodesService {
 
     private final StandardAnalyzer analyzer = new StandardAnalyzer();
@@ -49,11 +49,13 @@ public class StationCodesServiceImpl implements StationCodesService {
     }
 
     @Override
+    @Loggable
     public Optional<StationCode> getCode(final String code) {
         return stationCodes.stream().filter((c) -> c.getStationId().get().equals(code)).findFirst();
     }
 
     @Override
+    @Loggable
     public List<StationCode> find(@QueryParam("name") String term) {
         try {
             Query query = new QueryParser("name", analyzer).parse(String.format("name:%s*", term));

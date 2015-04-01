@@ -17,7 +17,7 @@ import javax.inject.Singleton;
  *
  * @author Gareth Williams
  */
-@Service @Loggable
+@Service
 public class StationBoardsFactory implements Factory<StationBoards> {
 
     private final StationBoards boards;
@@ -35,6 +35,7 @@ public class StationBoardsFactory implements Factory<StationBoards> {
 
     @Override
     @Singleton
+    @Loggable
     public StationBoards provide() {
         return boards;
     }
