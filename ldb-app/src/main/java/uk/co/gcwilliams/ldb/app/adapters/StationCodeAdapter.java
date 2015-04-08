@@ -16,6 +16,8 @@ import uk.co.gcwilliams.ldb.service.StationCodes;
 import java.util.Collections;
 import java.util.List;
 
+import static java.util.Collections.singletonList;
+
 /**
  * The station code adapter
  *
@@ -40,8 +42,23 @@ public class StationCodeAdapter extends BaseAdapter implements Filterable {
         this.items = Collections.emptyList();
     }
 
+    /**
+     * Gets the selected station code
+     *
+     * @return the selected station code
+     */
     public Optional<StationCode> getSelected() {
         return selected;
+    }
+
+    /**
+     * Sets the selected station code
+     *
+     * @param selected the selected station code
+     */
+    public void setSelected(StationCode selected) {
+        this.selected = Optional.of(selected);
+        this.items = singletonList(selected);
     }
 
     @Override

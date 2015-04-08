@@ -13,6 +13,8 @@ public final class LdbConstants {
 
     public static final String SERVICE_URL_KEY = "service.url";
 
+    public static final String CONTEXT_PATH_KEY = "service.context.path";
+
     public static final String USERNAME_KEY = "username";
 
     public static final String PASSWORD_KEY = "password";

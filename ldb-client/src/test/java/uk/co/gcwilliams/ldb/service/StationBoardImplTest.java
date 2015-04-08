@@ -1,27 +1,22 @@
 package uk.co.gcwilliams.ldb.service;
 
-import com.google.common.base.Charsets;
+import com.google.common.base.Function;
 import com.google.common.io.CharStreams;
-import com.google.common.net.MediaType;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 import uk.co.gcwilliams.ldb.model.Id;
 import uk.co.gcwilliams.ldb.model.Service;
 import uk.co.gcwilliams.ldb.model.ServiceDetail;
 import uk.co.gcwilliams.ldb.model.StationBoard;
 import uk.co.gcwilliams.ldb.model.StationCode;
 import uk.co.gcwilliams.ldb.model.builder.StationCodeBuilder;
-import uk.co.gcwilliams.ldb.service.StationBoardsImpl;
+import uk.co.gcwilliams.ldb.request.HttpClient;
+import uk.co.gcwilliams.ldb.request.RequestBuilder;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -29,6 +24,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
@@ -37,38 +33,34 @@ import static org.mockito.Mockito.when;
  * @author Gareth Williams
  */
 @RunWith(MockitoJUnitRunner.class)
+@SuppressWarnings("unchecked")
 public class StationBoardImplTest {
 
     @Mock
-    private HttpClient httpClient;
+    private HttpClient client;
 
     @Mock
-    private HttpResponse response;
-
-    @Mock
-    private HttpEntity entity;
-
-    @Mock
-    private Header contentType;
-
-    @Before
-    public void setup() throws IOException {
-        when(httpClient.execute(any(HttpUriRequest.class))).thenReturn(response);
-        when(response.getEntity()).thenReturn(entity);
-        when(entity.getContentType()).thenReturn(contentType);
-        when(contentType.getValue()).thenReturn(MediaType.JSON_UTF_8.toString());
-    }
+    private RequestBuilder builder;
 
     @Test
     public void testGetArrivalBoard() throws IOException {
 
         // arrange
-        String mockResponse = getMockResponse("tbd-arrival-response.json");
+        final String mockResponse = getMockResponse("tbd-arrival-response.json");
         StationCode threeBridges = new StationCodeBuilder().setName("Three Bridges").setStationId("TBD").build();
-        when(entity.getContent()).thenReturn(new ByteArrayInputStream(mockResponse.getBytes(Charsets.UTF_8)));
+        when(client.<StationBoard>request()).thenReturn(builder);
+        when(builder.withPath(anyString())).thenReturn(builder);
+        when(builder.withParam(anyString(), anyString())).thenReturn(builder);
+        when(builder.execute(any(Function.class))).thenAnswer(new Answer<StationBoard>() {
+            @Override
+            public StationBoard answer(InvocationOnMock invocation) throws Throwable {
+                Function<String, StationBoard> fn = (Function<String, StationBoard>)invocation.getArguments()[0];
+                return fn.apply(mockResponse);
+            }
+        });
 
         // act
-        StationBoard board = new StationBoardsImpl(httpClient, "host", 443, "").getArrivalBoard(threeBridges);
+        StationBoard board = new StationBoardsImpl(client).getArrivalBoard(threeBridges);
 
         // assert
         assertThat(board, notNullValue());
@@ -83,13 +75,22 @@ public class StationBoardImplTest {
     public void testGetArrivalBoardWithTo() throws IOException {
 
         // arrange
-        String mockResponse = getMockResponse("tbd-bug-arrival-response.json");
+        final String mockResponse = getMockResponse("tbd-bug-arrival-response.json");
         StationCode threeBridges = new StationCodeBuilder().setName("Three Bridges").setStationId("TBD").build();
         StationCode burgessHill = new StationCodeBuilder().setName("Burgess Hill").setStationId("BUG").build();
-        when(entity.getContent()).thenReturn(new ByteArrayInputStream(mockResponse.getBytes(Charsets.UTF_8)));
+        when(client.<StationBoard>request()).thenReturn(builder);
+        when(builder.withPath(anyString())).thenReturn(builder);
+        when(builder.withParam(anyString(), anyString())).thenReturn(builder);
+        when(builder.execute(any(Function.class))).thenAnswer(new Answer<StationBoard>() {
+            @Override
+            public StationBoard answer(InvocationOnMock invocation) throws Throwable {
+                Function<String, StationBoard> fn = (Function<String, StationBoard>) invocation.getArguments()[0];
+                return fn.apply(mockResponse);
+            }
+        });
 
         // act
-        StationBoard board = new StationBoardsImpl(httpClient, "host", 443, "").getArrivalBoard(threeBridges, burgessHill);
+        StationBoard board = new StationBoardsImpl(client).getArrivalBoard(threeBridges, burgessHill);
 
         // assert
         assertThat(board, notNullValue());
@@ -99,12 +100,21 @@ public class StationBoardImplTest {
     public void testGetDepartureBoard() throws IOException {
 
         // arrange
-        String mockResponse = getMockResponse("tbd-departure-response.json");
+        final String mockResponse = getMockResponse("tbd-departure-response.json");
         StationCode threeBridges = new StationCodeBuilder().setName("Three Bridges").setStationId("TBD").build();
-        when(entity.getContent()).thenReturn(new ByteArrayInputStream(mockResponse.getBytes(Charsets.UTF_8)));
+        when(client.<StationBoard>request()).thenReturn(builder);
+        when(builder.withPath(anyString())).thenReturn(builder);
+        when(builder.withParam(anyString(), anyString())).thenReturn(builder);
+        when(builder.execute(any(Function.class))).thenAnswer(new Answer<StationBoard>() {
+            @Override
+            public StationBoard answer(InvocationOnMock invocation) throws Throwable {
+                Function<String, StationBoard> fn = (Function<String, StationBoard>) invocation.getArguments()[0];
+                return fn.apply(mockResponse);
+            }
+        });
 
         // act
-        StationBoard board = new StationBoardsImpl(httpClient, "host", 443, "").getDepartureBoard(threeBridges);
+        StationBoard board = new StationBoardsImpl(client).getDepartureBoard(threeBridges);
 
         // assert
         assertThat(board, notNullValue());
@@ -114,13 +124,22 @@ public class StationBoardImplTest {
     public void testGetDepartureBoardWithFrom() throws IOException {
 
         // arrange
-        String mockResponse = getMockResponse("tbd-bug-departure-response.json");
+        final String mockResponse = getMockResponse("tbd-bug-departure-response.json");
         StationCode threeBridges = new StationCodeBuilder().setName("Three Bridges").setStationId("TBD").build();
         StationCode burgessHill = new StationCodeBuilder().setName("Burgess Hill").setStationId("BUG").build();
-        when(entity.getContent()).thenReturn(new ByteArrayInputStream(mockResponse.getBytes(Charsets.UTF_8)));
+        when(client.<StationBoard>request()).thenReturn(builder);
+        when(builder.withPath(anyString())).thenReturn(builder);
+        when(builder.withParam(anyString(), anyString())).thenReturn(builder);
+        when(builder.execute(any(Function.class))).thenAnswer(new Answer<StationBoard>() {
+            @Override
+            public StationBoard answer(InvocationOnMock invocation) throws Throwable {
+                Function<String, StationBoard> fn = (Function<String, StationBoard>) invocation.getArguments()[0];
+                return fn.apply(mockResponse);
+            }
+        });
 
         // act
-        StationBoard board = new StationBoardsImpl(httpClient, "host", 443, "").getDepartureBoard(threeBridges, burgessHill);
+        StationBoard board = new StationBoardsImpl(client).getDepartureBoard(threeBridges, burgessHill);
 
         // assert
         assertThat(board, notNullValue());
@@ -130,11 +149,20 @@ public class StationBoardImplTest {
     public void testGetServiceDetail() throws IOException {
 
         // arrange
-        String mockResponse = getMockResponse("service-detail-response.json");
-        when(entity.getContent()).thenReturn(new ByteArrayInputStream(mockResponse.getBytes(Charsets.UTF_8)));
+        final String mockResponse = getMockResponse("service-detail-response.json");
+        when(client.<StationBoard>request()).thenReturn(builder);
+        when(builder.withPath(anyString())).thenReturn(builder);
+        when(builder.withParam(anyString(), anyString())).thenReturn(builder);
+        when(builder.execute(any(Function.class))).thenAnswer(new Answer<ServiceDetail>() {
+            @Override
+            public ServiceDetail answer(InvocationOnMock invocation) throws Throwable {
+                Function<String, ServiceDetail> fn = (Function<String, ServiceDetail>) invocation.getArguments()[0];
+                return fn.apply(mockResponse);
+            }
+        });
 
         // act
-        ServiceDetail detail = new StationBoardsImpl(httpClient, "host", 443, "").getServiceDetail(new Id<Service>(""));
+        ServiceDetail detail = new StationBoardsImpl(client).getServiceDetail(new Id<Service>(""));
 
         // assert
         assertThat(detail, notNullValue());

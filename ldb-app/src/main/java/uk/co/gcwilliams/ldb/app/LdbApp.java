@@ -1,7 +1,6 @@
 package uk.co.gcwilliams.ldb.app;
 
 import android.app.Application;
-import android.net.http.AndroidHttpClient;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
@@ -12,16 +11,18 @@ import uk.co.gcwilliams.ldb.app.tasks.ArrivalStationBoardTask;
 import uk.co.gcwilliams.ldb.app.tasks.DepartureStationBoardTask;
 import uk.co.gcwilliams.ldb.app.util.AuthenticationUtil;
 import uk.co.gcwilliams.ldb.app.util.PropertyUtil;
+import uk.co.gcwilliams.ldb.request.HttpClient;
+import uk.co.gcwilliams.ldb.request.HttpClientImpl;
 import uk.co.gcwilliams.ldb.service.StationBoards;
-import uk.co.gcwilliams.ldb.service.StationCodes;
 import uk.co.gcwilliams.ldb.service.StationBoardsImpl;
+import uk.co.gcwilliams.ldb.service.StationCodes;
 import uk.co.gcwilliams.ldb.service.StationCodesImpl;
 
 import java.util.Properties;
 
-import static java.lang.String.format;
-
 /**
+ * The LDB application
+ *
  * @author Gareth Williams
  */
 public class LdbApp extends Application {
@@ -57,13 +58,36 @@ public class LdbApp extends Application {
         @Override
         public void configure(Binder binder) {
             binder.bind(Properties.class).toInstance(properties);
-            binder.bind(AuthenticationUtil.class);
-            binder.bind(AndroidHttpClient.class).toInstance(AndroidHttpClient.newInstance("Android"));
+            binder.bind(AuthenticationUtil.class).asEagerSingleton();
+            binder.bind(HttpClient.class).toProvider(HttpClientProvider.class).asEagerSingleton();
             binder.bind(StationBoards.class).toProvider(StationBoardsProvider.class).asEagerSingleton();
             binder.bind(StationCodes.class).toProvider(StationCodesProvider.class).asEagerSingleton();
             binder.bind(StationCodeAdapter.class);
             binder.bind(DepartureStationBoardTask.class);
             binder.bind(ArrivalStationBoardTask.class);
+        }
+    }
+
+    private static class HttpClientProvider implements Provider<HttpClient> {
+
+        private final HttpClient client;
+
+        /**
+         * Default constructor
+         *
+         * @param properties the properties
+         * @param authenticationUtil the authentication utilities
+         */
+        @Inject
+        public HttpClientProvider(Properties properties, AuthenticationUtil authenticationUtil) {
+            String serviceUrl = properties.getProperty(LdbConstants.SERVICE_URL_KEY);
+            String contextPath = properties.getProperty(LdbConstants.CONTEXT_PATH_KEY);
+            client = new HttpClientImpl(serviceUrl, contextPath, 443, authenticationUtil.getAuthenticationHeader());
+        }
+
+        @Override
+        public HttpClient get() {
+            return client;
         }
     }
 
@@ -76,12 +100,8 @@ public class LdbApp extends Application {
         private final StationBoards boards;
 
         @Inject
-        public StationBoardsProvider(
-                AndroidHttpClient httpClient,
-                Properties properties,
-                AuthenticationUtil authenticationUtil) {
-            String serviceUrl = properties.getProperty(LdbConstants.SERVICE_URL_KEY);
-            boards = new StationBoardsImpl(httpClient, serviceUrl, authenticationUtil.getAuthenticationHeader());
+        public StationBoardsProvider(HttpClient client) {
+            boards = new StationBoardsImpl(client);
         }
 
         @Override
@@ -99,12 +119,8 @@ public class LdbApp extends Application {
         private final StationCodes codes;
 
         @Inject
-        public StationCodesProvider(
-                AndroidHttpClient httpClient,
-                Properties properties,
-                AuthenticationUtil authenticationUtil) {
-            String serviceUrl = properties.getProperty(LdbConstants.SERVICE_URL_KEY);
-            codes = new StationCodesImpl(httpClient, serviceUrl, authenticationUtil.getAuthenticationHeader());
+        public StationCodesProvider(HttpClient client) {
+            codes = new StationCodesImpl(client);
         }
 
         @Override
