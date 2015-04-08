@@ -68,6 +68,10 @@ public class LdbApp extends Application {
         }
     }
 
+    /**
+     * The HTTP client provider
+     *
+     */
     private static class HttpClientProvider implements Provider<HttpClient> {
 
         private final HttpClient client;

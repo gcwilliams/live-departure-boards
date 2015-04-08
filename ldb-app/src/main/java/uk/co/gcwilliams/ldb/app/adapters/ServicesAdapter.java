@@ -57,14 +57,11 @@ public class ServicesAdapter extends BaseAdapter {
         }
 
         Service service = services.get(position);
-
         setText(view, R.id.destination, service.getDestination().getStation().getName());
-        setText(view, R.id.platform, service.getPlatform().isPresent()
-            ? String.valueOf(service.getPlatform().get())
-            : EMPTY);
-        setText(view, R.id.due, service.getEstimatedTimeOfDeparture().isPresent()
-            ? TIME_FORMATTER.print(service.getEstimatedTimeOfDeparture().get())
-            : EMPTY);
+        setText(view, R.id.platform, service.getPlatform().isPresent() ? String.valueOf(service.getPlatform().get()) : EMPTY);
+        if (service.getEstimatedTimeOfDeparture().isPresent()) {
+            setText(view, R.id.due, TIME_FORMATTER.print(service.getEstimatedTimeOfDeparture().get()));
+        }
 
         return view;
     }

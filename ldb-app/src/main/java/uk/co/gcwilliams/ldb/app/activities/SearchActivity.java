@@ -75,10 +75,10 @@ public class SearchActivity extends RoboActivity implements View.OnClickListener
      * @param stationCodeKey the station code key
      */
     private static void restoreSelectedStationCode(Bundle savedInstanceState, StationCodeAdapter adapter, String stationCodeKey) {
-//        StationCode code = (StationCode)savedInstanceState.getSerializable(stationCodeKey);
-//        if (code != null) {
-//            adapter.setSelected(code);
-//        }
+        StationCode code = savedInstanceState != null ? (StationCode)savedInstanceState.getSerializable(stationCodeKey) : null;
+        if (code != null) {
+            adapter.setSelected(code);
+        }
     }
 
     /**
@@ -89,9 +89,9 @@ public class SearchActivity extends RoboActivity implements View.OnClickListener
      * @param stationCodeKey the station code key
      */
     private static void saveSelectedStationCode(Bundle savedInstanceState, StationCodeAdapter adapter, String stationCodeKey) {
-//        Optional<StationCode> code = adapter.getSelected();
-//        if (code.isPresent()) {
-//            savedInstanceState.putSerializable(stationCodeKey, code.get());
-//        }
+        Optional<StationCode> code = adapter.getSelected();
+        if (code.isPresent()) {
+            savedInstanceState.putSerializable(stationCodeKey, code.get());
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 import com.google.common.base.Optional;
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import uk.co.gcwilliams.ldb.app.R;
 import uk.co.gcwilliams.ldb.model.StationCode;
@@ -100,7 +101,10 @@ public class StationCodeAdapter extends BaseAdapter implements Filterable {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<StationCode> codes = stationCodes.suggestStationCodes(constraint.toString());
+            String term = constraint != null ? constraint.toString() : "";
+            List<StationCode> codes = Strings.isNullOrEmpty(term)
+                ? Collections.<StationCode>emptyList()
+                : stationCodes.suggestStationCodes(term);
             FilterResults results = new FilterResults();
             results.count = codes.size();
             results.values = codes;

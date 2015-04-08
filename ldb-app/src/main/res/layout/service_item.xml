@@ -2,7 +2,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/destination"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/on_time"
         android:layout_toRightOf="@id/destination"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_below="@id/destination"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

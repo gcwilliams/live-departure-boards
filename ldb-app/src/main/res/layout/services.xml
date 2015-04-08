@@ -2,11 +2,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:orientation="vertical"
-      android:layout_width="match_parent"
+      android:layout_width="fill_parent"
       android:layout_height="match_parent"
       android:padding="15dp"
-      android:paddingTop="35dp"
-      android:background="@drawable/background">
+      android:paddingTop="35dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,13 +16,15 @@
         <TextView
             android:id="@+id/departing_from"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:padding="10dp"/>
 
         <TextView
             android:id="@+id/going_to"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:padding="10dp"/>
 
         <ListView
             android:id="@+id/services"
