@@ -1,14 +1,15 @@
 package uk.co.gcwilliams.ldb.app;
 
 import android.app.Application;
+import android.os.Looper;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Provider;
 import roboguice.RoboGuice;
 import uk.co.gcwilliams.ldb.app.adapters.StationCodeAdapter;
-import uk.co.gcwilliams.ldb.app.tasks.ArrivalStationBoardTask;
-import uk.co.gcwilliams.ldb.app.tasks.DepartureStationBoardTask;
+import uk.co.gcwilliams.ldb.app.boards.StationBoardProvider;
+import uk.co.gcwilliams.ldb.app.boards.StationBoardProviderImpl;
 import uk.co.gcwilliams.ldb.app.util.AuthenticationUtil;
 import uk.co.gcwilliams.ldb.app.util.PropertyUtil;
 import uk.co.gcwilliams.ldb.request.HttpClient;
@@ -63,8 +64,7 @@ public class LdbApp extends Application {
             binder.bind(StationBoards.class).toProvider(StationBoardsProvider.class).asEagerSingleton();
             binder.bind(StationCodes.class).toProvider(StationCodesProvider.class).asEagerSingleton();
             binder.bind(StationCodeAdapter.class);
-            binder.bind(DepartureStationBoardTask.class);
-            binder.bind(ArrivalStationBoardTask.class);
+            binder.bind(StationBoardProvider.class).to(StationBoardProviderImpl.class).asEagerSingleton();
         }
     }
 

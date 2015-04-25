@@ -23,8 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.DepartureBoardActivity" android:label="@string/app_name"/>
-        <activity android:name=".activities.ArrivalBoardActivity" android:label="@string/app_name"/>
+        <activity android:name=".activities.StationBoardActivity" android:label="@string/app_name"/>
         <activity android:name=".activities.ServiceDetailsActivity" android:label="@string/app_name"/>
 
     </application>

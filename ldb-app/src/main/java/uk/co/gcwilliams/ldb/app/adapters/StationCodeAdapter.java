@@ -60,6 +60,7 @@ public class StationCodeAdapter extends BaseAdapter implements Filterable {
     public void setSelected(StationCode selected) {
         this.selected = Optional.of(selected);
         this.items = singletonList(selected);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -114,7 +115,7 @@ public class StationCodeAdapter extends BaseAdapter implements Filterable {
         @Override
         @SuppressWarnings("unchecked")
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            items = (List<StationCode>)results.values;
+            items = results.values != null ? (List<StationCode>)results.values : Collections.<StationCode>emptyList();
             if (results.count > 0) {
                 notifyDataSetChanged();
             } else {

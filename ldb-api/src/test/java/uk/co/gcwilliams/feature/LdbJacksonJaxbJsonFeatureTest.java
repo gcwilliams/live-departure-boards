@@ -1,6 +1,6 @@
 package uk.co.gcwilliams.feature;
 
-import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;

@@ -1,11 +1,10 @@
 package uk.co.gcwilliams.serializers;
 
-import org.codehaus.jackson.map.BeanDescription;
-import org.codehaus.jackson.map.BeanProperty;
-import org.codehaus.jackson.map.JsonSerializer;
-import org.codehaus.jackson.map.SerializationConfig;
-import org.codehaus.jackson.map.Serializers;
-import org.codehaus.jackson.type.JavaType;
+import com.fasterxml.jackson.databind.BeanDescription;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -26,7 +25,7 @@ import static org.mockito.Mockito.when;
  * Created by GWilliams on 25/03/2015.
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(JavaType.class)
+@PrepareForTest({ JavaType.class, SerializationConfig.class })
 public class StationBoardJacksonSerializersBuilderTest {
 
     @Mock
@@ -37,9 +36,6 @@ public class StationBoardJacksonSerializersBuilderTest {
 
     @Mock
     private BeanDescription beanDesc;
-
-    @Mock
-    private BeanProperty property;
 
     @Test
     @SuppressWarnings("unchecked")
@@ -53,7 +49,7 @@ public class StationBoardJacksonSerializersBuilderTest {
                 .build();
 
         // act
-        JsonSerializer<?> serializer = serializers.findSerializer(config, type, beanDesc, property);
+        JsonSerializer<?> serializer = serializers.findSerializer(config, type, beanDesc);
 
         // assert
         assertThat(serializer, instanceOf(IdSerializer.class));
@@ -71,7 +67,7 @@ public class StationBoardJacksonSerializersBuilderTest {
                 .build();
 
         // act
-        JsonSerializer<?> serializer = serializers.findSerializer(config, type, beanDesc, property);
+        JsonSerializer<?> serializer = serializers.findSerializer(config, type, beanDesc);
 
         // assert
         assertThat(serializer, nullValue());

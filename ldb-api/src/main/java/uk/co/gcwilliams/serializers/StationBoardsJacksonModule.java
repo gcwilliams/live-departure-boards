@@ -1,9 +1,9 @@
 package uk.co.gcwilliams.serializers;
 
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.google.common.base.Optional;
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.Module;
-import org.codehaus.jackson.map.Serializers;
 import uk.co.gcwilliams.ldb.model.Id;
 
 /**

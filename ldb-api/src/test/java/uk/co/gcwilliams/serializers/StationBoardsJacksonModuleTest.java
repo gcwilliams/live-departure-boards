@@ -1,7 +1,7 @@
 package uk.co.gcwilliams.serializers;
 
-import org.codehaus.jackson.map.Module;
-import org.codehaus.jackson.map.Serializers;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;

@@ -3,8 +3,11 @@ package uk.co.gcwilliams.ldb.app.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.RadioButton;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import roboguice.activity.RoboActivity;
@@ -22,19 +25,25 @@ import uk.co.gcwilliams.ldb.model.StationCode;
  * @author Gareth Williams
  */
 @ContentView(R.layout.search)
-public class SearchActivity extends RoboActivity implements View.OnClickListener {
+public class SearchActivity extends RoboActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     @Inject
-    private StationCodeAdapter departingFromAdapter;
+    private InputMethodManager inputMethodManager;
 
     @Inject
-    private StationCodeAdapter goingToAdapter;
+    private StationCodeAdapter stationCodeAdapter;
 
-    @InjectView(R.id.departing_from)
-    private AutoCompleteTextView departingFrom;
+    @Inject
+    private StationCodeAdapter optionalStationCodeAdapter;
 
-    @InjectView(R.id.going_to)
-    private AutoCompleteTextView goingTo;
+    @InjectView(R.id.station_code)
+    private AutoCompleteTextView stationCode;
+
+    @InjectView(R.id.optional_station_code)
+    private AutoCompleteTextView optionalStationCode;
+
+    @InjectView(R.id.departures)
+    private RadioButton departures;
 
     @InjectView(R.id.view_button)
     private Button viewButton;
@@ -42,28 +51,55 @@ public class SearchActivity extends RoboActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        restoreSelectedStationCode(savedInstanceState, departingFromAdapter, LdbConstants.Search.FROM);
-        restoreSelectedStationCode(savedInstanceState, goingToAdapter, LdbConstants.Search.TO);
-        departingFrom.setAdapter(departingFromAdapter);
-        goingTo.setAdapter(goingToAdapter);
+//        restoreSelectedStationCode(savedInstanceState, stationCodeAdapter, LdbConstants.Search.STATION_CODE);
+//        restoreSelectedStationCode(savedInstanceState, optionalStationCodeAdapter, LdbConstants.Search.OPTIONAL_STATION_CODE);
+        stationCode.setOnItemClickListener(this);
+        stationCode.setAdapter(stationCodeAdapter);
+        optionalStationCode.setOnItemClickListener(this);
+        optionalStationCode.setAdapter(optionalStationCodeAdapter);
         viewButton.setOnClickListener(this);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
-        saveSelectedStationCode(savedInstanceState, departingFromAdapter, LdbConstants.Search.FROM);
-        saveSelectedStationCode(savedInstanceState, goingToAdapter, LdbConstants.Search.TO);
+//        saveSelectedStationCode(savedInstanceState, stationCodeAdapter, LdbConstants.Search.STATION_CODE);
+//        saveSelectedStationCode(savedInstanceState, optionalStationCodeAdapter, LdbConstants.Search.OPTIONAL_STATION_CODE);
     }
 
     @Override
     public void onClick(View v) {
-        if (departingFromAdapter.getSelected().isPresent()) {
-            Intent showBoardIntent = new Intent(this, DepartureBoardActivity.class);
-            showBoardIntent.putExtra(LdbConstants.Search.FROM, departingFromAdapter.getSelected().get());
-            if (goingToAdapter.getSelected().isPresent()) {
-                showBoardIntent.putExtra(LdbConstants.Search.TO, goingToAdapter.getSelected().get());
-            }
+        if (stationCodeAdapter.getSelected().isPresent()) {
+            Intent showBoardIntent = new Intent(this, StationBoardActivity.class);
+            showBoardIntent.putExtra(LdbConstants.Search.DEPARTURES, departures.isChecked());
+            showBoardIntent.putExtra(LdbConstants.Search.STATION_CODE, stationCodeAdapter.getSelected().get());
+            showBoardIntent.putExtra(LdbConstants.Search.OPTIONAL_STATION_CODE, optionalStationCodeAdapter.getSelected());
             startActivity(showBoardIntent);
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        View currentFocus = getCurrentFocus();
+        if (currentFocus != null) {
+            inputMethodManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * The on board type changed
+     *
+     * @param view the view
+     */
+    public void onBoardTypeChanged(View view) {
+        switch (view.getId()) {
+            case R.id.departures:
+                stationCode.setHint(R.string.departures_from);
+                optionalStationCode.setHint(R.string.departures_to);
+                break;
+            case R.id.arrivals:
+                stationCode.setHint(R.string.arrivals_to);
+                optionalStationCode.setHint(R.string.arrivals_from);
+                break;
         }
     }
 

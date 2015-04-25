@@ -1,13 +1,12 @@
 package uk.co.gcwilliams.serializers;
 
+import com.fasterxml.jackson.databind.BeanDescription;
+import com.fasterxml.jackson.databind.BeanProperty;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.google.common.collect.Maps;
-import org.apache.lucene.analysis.util.CharArrayMap;
-import org.codehaus.jackson.map.BeanDescription;
-import org.codehaus.jackson.map.BeanProperty;
-import org.codehaus.jackson.map.JsonSerializer;
-import org.codehaus.jackson.map.SerializationConfig;
-import org.codehaus.jackson.map.Serializers;
-import org.codehaus.jackson.type.JavaType;
 
 import java.util.Collections;
 import java.util.Map;
@@ -64,8 +63,7 @@ public class StationBoardJacksonSerializersBuilder {
         public JsonSerializer<?> findSerializer(
                 SerializationConfig config,
                 JavaType type,
-                BeanDescription beanDesc,
-                BeanProperty property) {
+                BeanDescription beanDesc) {
             return serializers.entrySet()
                 .stream()
                 .filter(e -> e.getKey().isAssignableFrom(type.getRawClass()))

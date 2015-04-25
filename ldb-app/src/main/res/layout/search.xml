@@ -14,21 +14,40 @@
         android:padding="10dp">
 
         <AutoCompleteTextView
-            android:id="@+id/departing_from"
+            android:id="@+id/station_code"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="14dp"
-            android:hint="@string/from"
+            android:hint="@string/departures_from"
+            android:singleLine="true"
             android:layout_marginBottom="10dp"/>
 
         <AutoCompleteTextView
-            android:id="@+id/going_to"
+            android:id="@+id/optional_station_code"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="14dp"
-            android:hint="@string/to"
+            android:hint="@string/departures_to"
             android:layout_marginBottom="10dp"
-            android:layout_below="@id/departing_from"/>
+            android:layout_below="@id/station_code"/>
+
+        <RadioGroup android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/optional_station_code">
+
+            <RadioButton android:id="@+id/departures"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/departures"
+                 android:onClick="onBoardTypeChanged"/>
+
+            <RadioButton android:id="@+id/arrivals"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/arrivals"
+                 android:onClick="onBoardTypeChanged"/>
+        </RadioGroup>
 
         <Button
             android:id="@+id/view_button"

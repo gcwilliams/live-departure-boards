@@ -4,33 +4,34 @@
       android:orientation="vertical"
       android:layout_width="fill_parent"
       android:layout_height="match_parent"
-      android:padding="15dp"
-      android:paddingTop="35dp">
+      android:padding="5dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/departing_from"
-            android:layout_width="fill_parent"
+            android:id="@id/station_code"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:padding="10dp"/>
 
         <TextView
-            android:id="@+id/going_to"
-            android:layout_width="fill_parent"
+            android:id="@id/optional_station_code"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:visibility="gone"
             android:padding="10dp"/>
 
         <ListView
             android:id="@+id/services"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/station_code"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

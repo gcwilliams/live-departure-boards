@@ -1,9 +1,9 @@
 package uk.co.gcwilliams.feature;
 
-
-import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import uk.co.gcwilliams.serializers.StationBoardsJacksonModule;
 
 import javax.ws.rs.core.Feature;
@@ -26,10 +26,10 @@ public class LdbJacksonJaxbJsonFeature implements Feature {
      */
     public LdbJacksonJaxbJsonFeature() {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
-        mapper.configure(SerializationConfig.Feature.REQUIRE_SETTERS_FOR_GETTERS, false);
-        mapper.configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, false);
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         mapper.registerModule(new StationBoardsJacksonModule());
+        mapper.registerModule(new JodaModule());
         jacksonJaxbJsonProvider.setMapper(mapper);
     }
 

@@ -23,8 +23,19 @@ public final class LdbConstants {
 
         private Search() {} // static
 
-        public static final String FROM = "from";
+        public static final String BOARD = "board";
 
-        public static final String TO = "to";
+        public static final String DEPARTURES = "departures";
+
+        public static final String STATION_CODE = "station.code";
+
+        public static final String OPTIONAL_STATION_CODE = "optional.station.code";
+    }
+
+    public final class Detail {
+
+        private Detail() {} // static
+
+        public static final String SERVICE_ID = "service.id";
     }
 }
