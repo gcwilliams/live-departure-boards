@@ -80,14 +80,7 @@ public class StationCodeAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view;
-
-        if (convertView == null) {
-            view = inflater.inflate(R.layout.station_code, parent, false);
-        } else {
-            view = convertView;
-        }
-
+        View view = convertView == null ? inflater.inflate(R.layout.station_code, parent, false) : convertView;
         TextView text = (TextView)view.findViewById(R.id.station_name);
         text.setText(items.get(position).getName());
         return view;

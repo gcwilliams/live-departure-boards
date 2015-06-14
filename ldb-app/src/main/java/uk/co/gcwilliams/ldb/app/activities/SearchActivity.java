@@ -7,7 +7,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import roboguice.activity.RoboActivity;
@@ -25,7 +27,7 @@ import uk.co.gcwilliams.ldb.model.StationCode;
  * @author Gareth Williams
  */
 @ContentView(R.layout.search)
-public class SearchActivity extends RoboActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class SearchActivity extends RoboActivity implements View.OnClickListener, AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
 
     @Inject
     private InputMethodManager inputMethodManager;
@@ -36,8 +38,17 @@ public class SearchActivity extends RoboActivity implements View.OnClickListener
     @Inject
     private StationCodeAdapter optionalStationCodeAdapter;
 
+    @InjectView(R.id.title)
+    private TextView title;
+
+    @InjectView(R.id.station_code_title)
+    private TextView stationCodeTitle;
+
     @InjectView(R.id.station_code)
     private AutoCompleteTextView stationCode;
+
+    @InjectView(R.id.optional_station_code_title)
+    private TextView optionalStationCodeTitle;
 
     @InjectView(R.id.optional_station_code)
     private AutoCompleteTextView optionalStationCode;
@@ -45,25 +56,31 @@ public class SearchActivity extends RoboActivity implements View.OnClickListener
     @InjectView(R.id.departures)
     private RadioButton departures;
 
+    @InjectView(R.id.arrivals)
+    private RadioButton arrivals;
+
     @InjectView(R.id.view_button)
     private Button viewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        restoreSelectedStationCode(savedInstanceState, stationCodeAdapter, LdbConstants.Search.STATION_CODE);
-//        restoreSelectedStationCode(savedInstanceState, optionalStationCodeAdapter, LdbConstants.Search.OPTIONAL_STATION_CODE);
+        restoreBoardOption(savedInstanceState);
+        restoreSelectedStationCode(savedInstanceState, stationCodeAdapter, LdbConstants.Search.STATION_CODE);
+        restoreSelectedStationCode(savedInstanceState, optionalStationCodeAdapter, LdbConstants.Search.OPTIONAL_STATION_CODE);
         stationCode.setOnItemClickListener(this);
         stationCode.setAdapter(stationCodeAdapter);
         optionalStationCode.setOnItemClickListener(this);
         optionalStationCode.setAdapter(optionalStationCodeAdapter);
+        departures.setOnCheckedChangeListener(this);
         viewButton.setOnClickListener(this);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
-//        saveSelectedStationCode(savedInstanceState, stationCodeAdapter, LdbConstants.Search.STATION_CODE);
-//        saveSelectedStationCode(savedInstanceState, optionalStationCodeAdapter, LdbConstants.Search.OPTIONAL_STATION_CODE);
+        saveBoardOption(savedInstanceState);
+        saveSelectedStationCode(savedInstanceState, stationCodeAdapter, LdbConstants.Search.STATION_CODE);
+        saveSelectedStationCode(savedInstanceState, optionalStationCodeAdapter, LdbConstants.Search.OPTIONAL_STATION_CODE);
     }
 
     @Override
@@ -85,22 +102,40 @@ public class SearchActivity extends RoboActivity implements View.OnClickListener
         }
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isDepartures) {
+        setViewForBoardOption(isDepartures);
+    }
+
     /**
-     * The on board type changed
+     * Sets the view for the board option
      *
-     * @param view the view
+     * @param isDepartures true if the board is departures, false otherwise
      */
-    public void onBoardTypeChanged(View view) {
-        switch (view.getId()) {
-            case R.id.departures:
-                stationCode.setHint(R.string.departures_from);
-                optionalStationCode.setHint(R.string.departures_to);
-                break;
-            case R.id.arrivals:
-                stationCode.setHint(R.string.arrivals_to);
-                optionalStationCode.setHint(R.string.arrivals_from);
-                break;
-        }
+    private void setViewForBoardOption(boolean isDepartures) {
+        title.setText(isDepartures ? R.string.departures : R.string.arrivals);
+        stationCodeTitle.setText(isDepartures ? R.string.from : R.string.to);
+        optionalStationCodeTitle.setText(isDepartures ? R.string.to : R.string.from);
+        departures.setChecked(isDepartures);
+        arrivals.setChecked(!isDepartures);
+    }
+
+    /**
+     * Restores the board option
+     *
+     * @param savedInstanceState the saved instance state
+     */
+    private void restoreBoardOption(Bundle savedInstanceState) {
+        setViewForBoardOption(Boolean.TRUE.equals(savedInstanceState == null || savedInstanceState.getBoolean(LdbConstants.Search.DEPARTURES)));
+    }
+
+    /**
+     * Restores the board option
+     *
+     * @param savedInstanceState the saved instance state
+     */
+    private void saveBoardOption(Bundle savedInstanceState) {
+        savedInstanceState.putBoolean(LdbConstants.Search.DEPARTURES, departures.isChecked());
     }
 
     /**

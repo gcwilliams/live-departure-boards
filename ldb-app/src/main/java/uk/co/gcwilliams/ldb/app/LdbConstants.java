@@ -1,6 +1,8 @@
 package uk.co.gcwilliams.ldb.app;
 
 /**
+ * The constants used throughout the app
+ *
  * @author Gareth Williams
  */
 public final class LdbConstants {
@@ -23,13 +25,15 @@ public final class LdbConstants {
 
         private Search() {} // static
 
-        public static final String BOARD = "board";
-
         public static final String DEPARTURES = "departures";
 
         public static final String STATION_CODE = "station.code";
 
         public static final String OPTIONAL_STATION_CODE = "optional.station.code";
+
+        public static final String BOARD = "board";
+
+        public static final int BOARD_MSG_ID = 125887;
     }
 
     public final class Detail {
@@ -37,5 +41,9 @@ public final class LdbConstants {
         private Detail() {} // static
 
         public static final String SERVICE_ID = "service.id";
+
+        public static final String SERVICE_DETAIL = "detail";
+
+        public static final int SERVICE_DETAIL_MSG_ID = 125888;
     }
 }

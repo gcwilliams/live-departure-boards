@@ -1,63 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="fill_parent"
       android:padding="15dp"
-      android:paddingTop="35dp">
+      android:paddingTop="35dp"
+      android:background="@color/background">
 
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="@drawable/box"
         android:padding="10dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="@string/departures"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/station_code_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="@string/from"
+            android:paddingLeft="2dp"
+            android:layout_below="@id/title"/>
 
         <AutoCompleteTextView
             android:id="@+id/station_code"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="14dp"
-            android:hint="@string/departures_from"
             android:singleLine="true"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/station_code_title"/>
+
+        <TextView
+            android:id="@+id/optional_station_code_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="@string/to"
+            android:paddingLeft="2dp"
+            android:layout_below="@id/station_code"/>
 
         <AutoCompleteTextView
             android:id="@+id/optional_station_code"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="14dp"
-            android:hint="@string/departures_to"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@id/station_code"/>
+            android:hint="@string/optional"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/optional_station_code_title"/>
 
-        <RadioGroup android:layout_width="fill_parent"
+        <RadioGroup android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
                     android:layout_below="@id/optional_station_code">
 
             <RadioButton android:id="@+id/departures"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/departures"
-                 android:onClick="onBoardTypeChanged"/>
+                 android:textSize="12dp"
+                 android:checked="true"/>
 
             <RadioButton android:id="@+id/arrivals"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/arrivals"
-                 android:onClick="onBoardTypeChanged"/>
+                 android:textSize="12dp"/>
+
         </RadioGroup>
 
         <Button
             android:id="@+id/view_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:textSize="14dp"
             android:text="@string/view_board"/>
 
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

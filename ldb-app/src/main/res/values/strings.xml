@@ -2,12 +2,11 @@
 <resources>
     <string name="app_name">LDB</string>
     <string name="app_description">Live Train Departure Boards</string>
-    <string name="departures_from">From...</string>
-    <string name="departures_to">To... (optional)</string>
-    <string name="arrivals_to">To...</string>
-    <string name="arrivals_from">From... (optional)</string>
-    <string name="view_board">Show Me</string>
-    <string name="on_time">On Time</string>
     <string name="departures">Departures</string>
     <string name="arrivals">Arrivals</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="optional">(optional)</string>
+    <string name="view_board">Show Me</string>
+    <string name="on_time">On Time</string>
 </resources>

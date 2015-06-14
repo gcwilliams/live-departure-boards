@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="box_background" type="color">#CCCCCC</item>
+    <item name="box_background" type="color">#FFFFFF</item>
     <item name="box_border" type="color">#B5B5B5</item>
+    <item name="background" type="color">#003366</item>
 </resources>

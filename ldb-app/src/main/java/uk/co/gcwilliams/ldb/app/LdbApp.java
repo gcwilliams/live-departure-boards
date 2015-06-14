@@ -1,7 +1,6 @@
 package uk.co.gcwilliams.ldb.app;
 
 import android.app.Application;
-import android.os.Looper;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
@@ -20,6 +19,8 @@ import uk.co.gcwilliams.ldb.service.StationCodes;
 import uk.co.gcwilliams.ldb.service.StationCodesImpl;
 
 import java.util.Properties;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * The LDB application
@@ -65,6 +66,7 @@ public class LdbApp extends Application {
             binder.bind(StationCodes.class).toProvider(StationCodesProvider.class).asEagerSingleton();
             binder.bind(StationCodeAdapter.class);
             binder.bind(StationBoardProvider.class).to(StationBoardProviderImpl.class).asEagerSingleton();
+            binder.bind(Executor.class).toInstance(Executors.newSingleThreadExecutor());
         }
     }
 
